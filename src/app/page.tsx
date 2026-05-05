@@ -8,7 +8,7 @@ export default function Home() {
           onClick={() => {
             const popup = window.open("", "popup", "width=600,height=800");
             if (popup) {
-              popup.location.href = "https://www.instagram.com/oauth/authorize?force_reauth=true&client_id=2187891761969078&redirect_uri=https://jaws-wildcard-donor.ngrok-free.dev/oauth&response_type=code&scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights";
+              popup.location.href = "https://www.instagram.com/oauth/authorize?force_reauth=true&client_id=2187891761969078&redirect_uri=https://via-engage-98n76n77b-rudrakshkachhawa-9620s-projects.vercel.app/oauth&response_type=code&scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights";
             }
           }}>
           Connect with Instagram
