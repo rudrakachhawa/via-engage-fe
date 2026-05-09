@@ -20,7 +20,7 @@ export default function Home() {
     const popup = window.open("", "popup", "width=600,height=800");
     if (popup) {
       popup.location.href =
-        "https://www.instagram.com/accounts/login/?force_authentication=true&next=%2Foauth%2Fauthorize%2F%3Fclient_id%3D2187891761969078%26redirect_uri%3Dhttps%253A%252F%252Fvia-engage-98n76n77b-rudrakshkachhawa-9620s-projects.vercel.app%252Foauth%26response_type%3Dcode%26scope%3Dinstagram_business_basic%252Cinstagram_business_content_publish%252Cinstagram_business_manage_messages%252Cinstagram_business_manage_comments";
+        "https://www.instagram.com/accounts/login/?force_authentication=true&next=%2Foauth%2Fauthorize%2F%3Fclient_id%3D2187891761969078%26redirect_uri%3Dhttps%253A%252F%252Fvia-engage-fe.vercel.app%252Foauth%26response_type%3Dcode%26scope%3Dinstagram_business_basic%252Cinstagram_business_content_publish%252Cinstagram_business_manage_messages%252Cinstagram_business_manage_comments";
 
       // await message from popup
       const handleMessage = (event: MessageEvent) => {
