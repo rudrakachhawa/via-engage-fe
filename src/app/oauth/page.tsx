@@ -1,66 +1,66 @@
-// "use client";
+"use client";
 
-// import { useSearchParams } from "next/navigation";
-// import { useState } from "react";
-// import axios from "axios";
+import { useEffect } from "react";
+import { createInstaAccessToken } from "../../api/oauth";
+import { useMutation } from "@tanstack/react-query";
 
-// export default function OauthPage() {
-//   const searchParams = useSearchParams();
-//   const code = searchParams.get("code") ?? "3432";
-//   const [accessToken, setAccessToken] = useState<string | null>(null);
-//   const [loading, setLoading] = useState(false);
+export default function OauthConnectingPage() {
+  const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const code = params?.get("code");
 
-//   const handleClick = async () => {
-//     console.log(code, "=-=-=-=-=-=-")
-//     // setLoading(true);
-//     // try {
-//     //   const response = await axios.post(
-//     //     `${process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000"}/api/instagram/token`,
-//     //     { code }
-//     //   );
-//     //   const data = response.data;
-//     //   setAccessToken(data.access_token ?? "No token returned");
-//     // } catch (error) {
-//     //   console.log("error", error)
-//     //   console.error(error);
-//     //   setAccessToken("Error fetching token");
-//     // } finally {
-//     //   // setLoading(false);
-//     //   console.log("finally")
-//     // }
-//   };
+  const { mutate, status } = useMutation({
+    mutationFn: createInstaAccessToken,
+    onSuccess: (response) => {
+      if (window.opener) {
+        window.opener.postMessage(
+          {
+            type: "INSTAGRAM_OAUTH_SUCCESS",
+            payload: response,
+          },
+          "*"
+        );
+      }
+      setTimeout(() => {
+        window.close();
+      }, 1000);
+    },
+    onError: () => {
+      setTimeout(() => {
+        window.close();
+      }, 5000);
+    }
+  });
 
-//   return (
-//     <div className="flex flex-col items-center justify-center min-h-screen">
-//       <h1 className="text-2xl mb-4">Instagram OAuth Callback</h1>
-//       <p>Code: {code || "(none)"}</p>
-//       {code && (
-//         <button
-//           className="mt-4 px-4 py-2 bg-foreground text-background rounded"
-//           onClick={handleClick}
-//           disabled={loading}
-//         >
-//           {loading ? "Loading..." : "Get Access Token"}
-//         </button>
-//       )}
-//       {accessToken && (
-//         <div className="mt-4 p-2 bg-gray-100 rounded">
-//           Access Token: {accessToken}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
+  useEffect(() => {
+    if (code) {
+      mutate(code);
+    } else {
+      setTimeout(() => {
+        window.close();
+      }, 5000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [code]);
 
+  if (status === "pending" || status === "idle") {
+    return null;
+  }
 
-"use client"
+  if (status === "success") {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-2xl font-semibold mb-4">Connecting with your Instagram...</h1>
+        <p className="text-lg text-gray-600">Please wait while we finish connecting your Instagram account.</p>
+      </div>
+    );
+  }
 
-export default function Home() {
   return (
-    <div>
-      <button onClick={() => console.log("CLICK WORKING")}>
-        Click me
-      </button>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-2xl font-semibold mb-4 text-red-600">An error occurred!</h1>
+      <p className="text-lg text-gray-600">
+        Something went wrong connecting to Instagram. This window will close in a few seconds.
+      </p>
     </div>
   );
 }
