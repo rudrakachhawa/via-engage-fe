@@ -34,10 +34,7 @@ export default function LoginPage() {
         event.data &&
         typeof event.data === "object" &&
         event.data.type === "INSTAGRAM_OAUTH_SUCCESS" &&
-        event.data.payload &&
-        typeof event.data.payload.access_token === "string" &&
-        typeof event.data.payload.username === "string" &&
-        typeof event.data.payload.name === "string"
+        event.data.payload
       ) {
         // This is a placeholder; implement your storage and handling logic as needed.
         window.removeEventListener("message", handleMessage);
@@ -50,7 +47,7 @@ export default function LoginPage() {
       }
     }
     window.addEventListener("message", handleMessage);
-  }, [router]);
+  }, [router, dispatch]);
 
   // Only renders login page if id is NOT present (not authenticated)
   if (!id) {
