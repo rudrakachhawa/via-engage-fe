@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { createInstaAccessToken } from "../../api/oauth";
+import { createInstaAccessTokenApi } from "../../api/oauth";
 import { useMutation } from "@tanstack/react-query";
 
 export default function OauthConnectingPage() {
@@ -9,7 +9,7 @@ export default function OauthConnectingPage() {
   const code = params?.get("code");
 
   const { mutate, status } = useMutation({
-    mutationFn: createInstaAccessToken,
+    mutationFn: createInstaAccessTokenApi,
     onSuccess: (response) => {
       if (window.opener) {
         window.opener.postMessage(

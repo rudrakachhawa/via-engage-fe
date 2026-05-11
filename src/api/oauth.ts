@@ -1,11 +1,4 @@
-import axios from "axios";
-
-export function getServerBaseUrl(): string {
-  return (process.env.NEXT_PUBLIC_SERVER_BASE_URL ?? "http://localhost:8000").replace(
-    /\/$/,
-    "",
-  );
-}
+import api from "@/lib/interceptor";
 
 /**
  * Fetches user info from the backend OAuth endpoint.
@@ -13,10 +6,9 @@ export function getServerBaseUrl(): string {
  * @param code The OAuth code string
  * @returns Promise with user info response
  */
-export async function createInstaAccessToken(code: string): Promise<any> {
-  const baseUrl = getServerBaseUrl();
-  const url = `${baseUrl}/insta-oauth/token`;
-  const response = await axios.post(
+export async function createInstaAccessTokenApi(code: string): Promise<any> {
+  const url = `/insta-oauth/token`;
+  const response = await api.post(
     url,
     { code },
     { headers: { "Content-Type": "application/json" } }
