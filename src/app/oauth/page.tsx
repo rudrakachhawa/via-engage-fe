@@ -42,11 +42,7 @@ export default function OauthConnectingPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code]);
 
-  if (status === "pending" || status === "idle") {
-    return null;
-  }
-
-  if (status === "success") {
+  if (status !== "error") {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-2xl font-semibold mb-4">Connecting with your Instagram...</h1>
