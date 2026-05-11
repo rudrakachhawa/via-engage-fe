@@ -13,7 +13,7 @@ export default function Home() {
     } else {
       router.replace("/login");
     }
-  }, [userId, igUserId]);
+  }, [userId, igUserId, router]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black font-sans">

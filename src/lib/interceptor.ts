@@ -20,7 +20,7 @@ const api = axios.create({
 api.interceptors.request.use(
     async (config) => {
         // Get token from localStorage / redux / mmkv etc.
-        const token = getItemFromStorage('access_token');
+        const token = getItemFromStorage('accessToken');
 
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
