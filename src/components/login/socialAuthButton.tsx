@@ -37,7 +37,7 @@ export default function SocialAuthButtons() {
 
     return (
         <button onClick={handleLogin}>
-            Continue with Google
+            Login/Sign Up with Google
         </button>
     );
 }
