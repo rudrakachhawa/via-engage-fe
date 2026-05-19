@@ -3,7 +3,7 @@
 import { useUserState } from "@/store/hooks";
 
 export const INSTAGRAM_AUTH_URL =
-  "https://www.instagram.com/accounts/login/?force_authentication=true&next=%2Foauth%2Fauthorize%2F%3Fclient_id%3D2187891761969078%26redirect_uri%3Dhttps%253A%252F%252Fvia-engage-fe.vercel.app%252Foauth%26response_type%3Dcode%26scope%3Dinstagram_business_basic%252Cinstagram_business_content_publish%252Cinstagram_business_manage_messages%252Cinstagram_business_manage_comments";
+  "https://www.instagram.com/accounts/login/?force_authentication=true&next=%2Foauth%2Fauthorize%2F%3Fclient_id%3D2187891761969078%26redirect_uri%3Dhttps%253A%252F%252Fengage-via-dm.rudrakshkachhawa.workers.dev%252Foauth%26response_type%3Dcode%26scope%3Dinstagram_business_basic%252Cinstagram_business_content_publish%252Cinstagram_business_manage_messages%252Cinstagram_business_manage_comments";
 
 export function ConnectInstagramButton({ onConnect }: { onConnect: () => void }) {
   return (
