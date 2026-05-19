@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npx @opennextjs/cloudflare build",
+    "build": "next build",
+    "build:cf": "next build && npx @opennextjs/cloudflare build",
     "start": "next start",
-    "lint": "eslint",
-    "deploy": "pnpm run build && wrangler deploy"
+    "lint": "eslint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
