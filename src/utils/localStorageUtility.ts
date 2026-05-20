@@ -40,3 +40,14 @@ export function setItemInStorage<T = any>(storageKey: string, data: T): void {
         // Optionally handle storage full/disabled, unsupported type, etc.
     }
 }
+
+/**
+ * Clears all data from localStorage.
+ */
+export function clearAllStorage(): void {
+    try {
+        localStorage.clear();
+    } catch {
+        // Optionally handle errors (storage disabled etc.)
+    }
+}

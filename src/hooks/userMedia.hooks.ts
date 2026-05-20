@@ -1,0 +1,16 @@
+import { useQuery } from '@tanstack/react-query';
+import { getUserMediaApi } from '@/api/media.api';
+
+/**
+ * Custom hook to fetch user media (FEED or STORY) using React Query.
+ * @param type - The media type to fetch ("FEED" or "STORY")
+ */
+export function useUserMedia(type: "FEED" | "STORY" = "FEED") {
+    return useQuery({
+        queryKey: ['userMedia', type],
+        queryFn: () => getUserMediaApi(type),
+        enabled: !!type,
+        staleTime: 5 * 60 * 1000, // Adjust as appropriate, e.g. 5 mins
+        refetchOnWindowFocus: true,
+    });
+}
