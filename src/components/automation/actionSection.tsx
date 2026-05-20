@@ -23,7 +23,7 @@ export default function ActionSection({ automation, updateAutomationData }: Acti
     return (
         <div className="mb-6">
             <h2 className="text-lg font-semibold mb-2 text-zinc-900 dark:text-zinc-100">
-                Response
+                Response to Trigger
             </h2>
             <div className="flex flex-col gap-3">
                 <label htmlFor="message-template" className="text-zinc-700 dark:text-zinc-300 mb-1">
