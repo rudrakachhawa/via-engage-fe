@@ -1,26 +1,270 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* =========================
+     COLORS
+  ========================= */
+
+  --background: #f8f9ff;
+  --foreground: #0b1c30;
+
+  --card: #ffffff;
+  --card-foreground: #0b1c30;
+
+  --popover: #ffffff;
+  --popover-foreground: #0b1c30;
+
+  --primary: #2a14b4;
+  --primary-hover: #372abf;
+  --primary-foreground: #ffffff;
+
+  --secondary: #b5005d;
+  --secondary-foreground: #ffffff;
+
+  --tertiary: #570097;
+  --tertiary-foreground: #ffffff;
+
+  --muted: #e5eeff;
+  --muted-foreground: #464554;
+
+  --accent: #dce9ff;
+  --accent-foreground: #0b1c30;
+
+  --border: #dbe4f0;
+  --input: #dbe4f0;
+
+  --ring: rgba(42, 20, 180, 0.15);
+
+  --surface-low: #eff4ff;
+  --surface: #f8f9ff;
+  --surface-high: #dce9ff;
+
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --error: #dc2626;
+
+  /* =========================
+     GRADIENTS
+  ========================= */
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    #2a14b4 0%,
+    #570097 100%
+  );
+
+  --gradient-secondary: linear-gradient(
+    135deg,
+    #b5005d 0%,
+    #570097 100%
+  );
+
+  /* =========================
+     SHADOWS
+  ========================= */
+
+  --shadow-xs: 0px 1px 2px rgba(0, 0, 0, 0.03);
+
+  --shadow-sm: 0px 4px 20px rgba(0, 0, 0, 0.03);
+
+  --shadow-md: 0px 10px 30px rgba(0, 0, 0, 0.08);
+
+  --shadow-lg: 0px 20px 40px rgba(0, 0, 0, 0.12);
+
+  /* =========================
+     RADIUS
+  ========================= */
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* =========================
+     LAYOUT
+  ========================= */
+
+  --container-width: 1440px;
+
+  /* =========================
+     TYPOGRAPHY
+  ========================= */
+
+  --font-sans: "Inter", sans-serif;
+
+  --text-display-lg: 48px;
+  --text-headline-lg: 30px;
+  --text-headline-md: 24px;
+
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-body-sm: 14px;
+
+  /* =========================
+     MOTION
+  ========================= */
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+
+  --color-surface: var(--surface);
+  --color-surface-low: var(--surface-low);
+  --color-surface-high: var(--surface-high);
+
+  --font-sans: var(--font-sans);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================
+   BASE
+========================= */
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1 {
+  font-size: var(--text-display-lg);
+  line-height: 56px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--text-headline-lg);
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: var(--text-headline-md);
+  line-height: 32px;
+  font-weight: 600;
+}
+
+/* =========================
+   UTILITIES
+========================= */
+
+.container-app {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+.card-shadow {
+  box-shadow: var(--shadow-sm);
+}
+
+.modal-shadow {
+  box-shadow: var(--shadow-md);
+}
+
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.gradient-secondary {
+  background: var(--gradient-secondary);
+}
+
+/* =========================
+   COMPONENT DEFAULTS
+========================= */
+
+button {
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+input,
+textarea,
+select {
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(42, 20, 180, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    #2a14b4 0%,
+    #b5005d 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 700;
 }
