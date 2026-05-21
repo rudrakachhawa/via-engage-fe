@@ -1,0 +1,208 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Engage via DM | Welcome</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#4338ca",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#f0dbff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#dbb5ff",
+                    "on-surface": "#0b1c30",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-surface-variant": "#464554",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-fixed": "#2c0051",
+                    "tertiary": "#570097",
+                    "on-secondary-fixed": "#3f001c",
+                    "error-container": "#ffdad6",
+                    "surface": "#f8f9ff",
+                    "on-secondary-container": "#fffbff",
+                    "background": "#f8f9ff",
+                    "surface-container-low": "#eff4ff",
+                    "surface-bright": "#f8f9ff",
+                    "inverse-surface": "#213145",
+                    "primary-fixed": "#e3dfff",
+                    "tertiary-fixed-dim": "#ddb8ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "secondary-container": "#da2676",
+                    "outline": "#777586",
+                    "surface-variant": "#d3e4fe",
+                    "outline-variant": "#c7c4d7",
+                    "on-background": "#0b1c30",
+                    "tertiary-container": "#7700cc",
+                    "primary": "#2a14b4",
+                    "secondary": "#b5005d",
+                    "on-primary-container": "#c1beff",
+                    "surface-tint": "#5148d7",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-fixed": "#100069",
+                    "on-secondary-fixed-variant": "#8e0048",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#6800b4",
+                    "on-primary-fixed-variant": "#372abf",
+                    "secondary-fixed-dim": "#ffb1c7",
+                    "secondary-fixed": "#ffd9e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "container-padding-mobile": "1rem",
+                    "container-padding-desktop": "2rem",
+                    "gutter": "1.5rem",
+                    "section-gap": "3rem"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #2a14b4 0%, #570097 100%);
+        }
+        .btn-shadow:hover {
+            box-shadow: 0 4px 15px rgba(42, 20, 180, 0.2);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e2e8f0;
+        }
+        .floating-anim {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-container-padding-desktop sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-8"><span class="font-headline-md text-headline-md font-bold text-primary">Engage via DM</span>
+<nav class="hidden md:flex items-center gap-8 ml-8">
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Features</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+</nav></div>
+<div class="flex items-center gap-6"><div class="flex items-center gap-6">
+<button class="text-label-md font-label-md text-primary hover:bg-primary/5 px-4 py-2 rounded-lg transition-all border border-primary/20">Login</button>
+<button class="primary-gradient text-on-primary px-5 py-2 rounded-lg font-label-md text-label-md btn-shadow transition-all"><div class="flex items-center gap-2"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"></path></svg>Sign Up</div></button>
+</div></div>
+</header>
+<main class="max-w-[1440px] mx-auto px-container-padding-desktop py-12">
+<!-- Hero Section -->
+<section class="text-center mb-16"><h1 class="font-display-lg text-display-lg text-primary mb-6 tracking-tight">
+                Scale your Instagram engagement <br>
+<span class="text-secondary">with AI-powered DMs.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
+                The ultimate automation platform for creators and brands to engage 24/7 without lifting a finger.
+            </p>
+<div class="flex flex-wrap justify-center gap-4">
+<button class="primary-gradient text-on-primary px-8 py-4 rounded-xl font-headline-md text-label-md btn-shadow transition-all duration-200 active:scale-95" style="transform: scale(1);"><div class="flex items-center gap-3"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"></path></svg>Get Started for Free</div></button>
+<button class="bg-surface-container text-primary border border-primary/20 px-8 py-4 rounded-xl font-headline-md text-label-md hover:bg-surface-container-high transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">play_circle</span>
+                    Watch Demo
+                </button>
+</div></section>
+<!-- Main Onboarding Card (Bento Style) -->
+<!-- Section Gap -->
+<div class="py-12"></div>
+<!-- Bottom Grid: Knowledge Base & Benefits -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col items-center text-center gap-6 p-8 bg-surface-container-lowest border border-outline-variant rounded-2xl hover:shadow-xl transition-all duration-300">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl" data-weight="fill">shield</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Secure &amp; Compliant</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">We use official Instagram Graph APIs to ensure your account remains safe and compliant. Your security is our top priority with 256-bit encryption.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-6 p-8 bg-surface-container-lowest border border-outline-variant rounded-2xl hover:shadow-xl transition-all duration-300">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl" data-weight="fill">rocket_launch</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Rapid Engagement</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Scale your interaction rates without increasing your manual workload. Respond to every comment and DM in milliseconds, 24/7.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-6 p-8 bg-surface-container-lowest border border-outline-variant rounded-2xl hover:shadow-xl transition-all duration-300">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl" data-weight="fill">analytics</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Advanced Insights</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Get granular data on how your automations are performing. Track conversion rates, engagement lift, and total time saved daily.</p>
+</div>
+</div>
+</main>
+<!-- Subtle Background Element -->
+<div class="fixed top-0 right-0 -z-10 w-1/2 h-screen overflow-hidden opacity-20 pointer-events-none">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary rounded-full blur-[100px] floating-anim"></div>
+<div class="absolute top-1/2 -right-12 w-64 h-64 bg-secondary rounded-full blur-[80px] floating-anim" style="animation-delay: 1s"></div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.active\\:scale-95').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.95)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+
+</body></html>

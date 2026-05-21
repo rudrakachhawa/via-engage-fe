@@ -1,26 +1,269 @@
 @import "tailwindcss";
 
+/* Stitch Design System - Variables & Theme Configuration */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f9ff;
+  --foreground: #0b1c30;
+
+  /* Primary (Deep Indigo) */
+  --primary: #2a14b4;
+  --primary-container: #4338ca;
+  --on-primary-container: #c1beff;
+  --on-primary: #ffffff;
+  --inverse-primary: #c3c0ff;
+
+  /* Secondary (Vibrant Magenta) */
+  --secondary: #b5005d;
+  --secondary-container: #da2676;
+  --on-secondary-container: #fffbff;
+  --on-secondary: #ffffff;
+
+  /* Tertiary (Soft Purple) */
+  --tertiary: #570097;
+  --tertiary-container: #7700cc;
+  --on-tertiary-container: #dbb5ff;
+  --on-tertiary: #ffffff;
+
+  /* Neutral Slate / Surfaces */
+  --surface: #f8f9ff;
+  --surface-dim: #cbdbf5;
+  --surface-bright: #f8f9ff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #eff4ff;
+  --surface-container: #e5eeff;
+  --surface-container-high: #dce9ff;
+  --surface-container-highest: #d3e4fe;
+  --on-surface: #0b1c30;
+  --on-surface-variant: #464554;
+  --inverse-surface: #213145;
+  --inverse-on-surface: #eaf1ff;
+  --surface-tint: #5148d7;
+
+  /* Outline variants */
+  --outline: #777586;
+  --outline-variant: #c7c4d7;
+
+  /* Errors */
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+
+  /* Shadows */
+  --shadow-ambient: 0px 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-elevated: 0px 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+
+  --spacing-container-padding-desktop: 2rem;
+  --spacing-container-padding-mobile: 1rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-section-gap: 3rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base Styles */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-container-lowest);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--outline-variant);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--outline);
+}
+
+/* Custom premium components */
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply relative px-5 py-2.5 font-sans font-semibold text-white rounded-md transition-all duration-200 ease-out;
+    background: linear-gradient(135deg, #2a14b4 0%, #570097 100%);
+    box-shadow: 0 2px 4px rgba(42, 20, 180, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .btn-primary:hover {
+    @apply transform -translate-y-[1px];
+    box-shadow: 0 4px 12px rgba(42, 20, 180, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  .btn-primary:active {
+    @apply transform translate-y-0 duration-75;
+    box-shadow: 0 1px 2px rgba(42, 20, 180, 0.15);
+  }
+
+  .btn-secondary {
+    @apply px-5 py-2.5 font-sans font-semibold text-slate-700 bg-white border border-slate-200 rounded-md transition-all duration-200 ease-out;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+  .btn-secondary:hover {
+    @apply bg-slate-50 text-slate-900 border-slate-300 transform -translate-y-[1px];
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Cards */
+  .premium-card {
+    @apply bg-white p-6 rounded-lg border border-slate-100 transition-all duration-200;
+    box-shadow: var(--shadow-ambient);
+  }
+  .premium-card:hover {
+    box-shadow: var(--shadow-elevated);
+    @apply border-slate-200/80 transform -translate-y-[1px];
+  }
+
+  /* Form Input Glow */
+  .premium-input {
+    @apply w-full px-4 py-2.5 bg-white border border-slate-200 rounded-md text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-600 transition-all duration-200;
+  }
+  .premium-input:focus {
+    box-shadow: 0 0 0 3px rgba(42, 20, 180, 0.1);
+  }
+
+  /* Status Badges */
+  .badge-success {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100;
+  }
+  .badge-active {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-100;
+  }
+  .badge-warning {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-100;
+  }
+  .badge-error {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-100;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Stitch Specific Typography and Animations */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
 }
+
+.primary-gradient {
+  background: linear-gradient(135deg, #2a14b4 0%, #570097 100%);
+}
+
+.btn-shadow:hover {
+  box-shadow: 0 4px 15px rgba(42, 20, 180, 0.2);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid #e2e8f0;
+}
+
+.floating-anim {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Custom text sizes & fonts from Stitch */
+.text-display-lg {
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .text-display-lg {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+}
+.text-headline-lg {
+  font-size: 30px;
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+.text-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+.text-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+.text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.text-body-sm {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.text-label-md {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+.text-label-sm {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+/* Font family mapping */
+.font-display-lg,
+.font-headline-lg,
+.font-headline-md,
+.font-body-lg,
+.font-body-md,
+.font-body-sm,
+.font-label-md,
+.font-label-sm {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+}
+

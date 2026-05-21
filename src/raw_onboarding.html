@@ -1,0 +1,284 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Engage via DM | Welcome</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#4338ca",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#f0dbff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#dbb5ff",
+                    "on-surface": "#0b1c30",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-surface-variant": "#464554",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-fixed": "#2c0051",
+                    "tertiary": "#570097",
+                    "on-secondary-fixed": "#3f001c",
+                    "error-container": "#ffdad6",
+                    "surface": "#f8f9ff",
+                    "on-secondary-container": "#fffbff",
+                    "background": "#f8f9ff",
+                    "surface-container-low": "#eff4ff",
+                    "surface-bright": "#f8f9ff",
+                    "inverse-surface": "#213145",
+                    "primary-fixed": "#e3dfff",
+                    "tertiary-fixed-dim": "#ddb8ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "secondary-container": "#da2676",
+                    "outline": "#777586",
+                    "surface-variant": "#d3e4fe",
+                    "outline-variant": "#c7c4d7",
+                    "on-background": "#0b1c30",
+                    "tertiary-container": "#7700cc",
+                    "primary": "#2a14b4",
+                    "secondary": "#b5005d",
+                    "on-primary-container": "#c1beff",
+                    "surface-tint": "#5148d7",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-fixed": "#100069",
+                    "on-secondary-fixed-variant": "#8e0048",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#6800b4",
+                    "on-primary-fixed-variant": "#372abf",
+                    "secondary-fixed-dim": "#ffb1c7",
+                    "secondary-fixed": "#ffd9e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "container-padding-mobile": "1rem",
+                    "container-padding-desktop": "2rem",
+                    "gutter": "1.5rem",
+                    "section-gap": "3rem"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #2a14b4 0%, #570097 100%);
+        }
+        .btn-shadow:hover {
+            box-shadow: 0 4px 15px rgba(42, 20, 180, 0.2);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e2e8f0;
+        }
+        .floating-anim {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center h-16 px-container-padding-desktop sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary">Engage via DM</span>
+<div class="hidden md:flex items-center gap-2 bg-surface-container-low px-4 py-1.5 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md font-label-md w-64" placeholder="Search automations..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">history</span>
+</div>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer active:scale-95 transition-transform">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young creative director with a warm smile, set against a soft-focus studio background with warm, natural lighting. The visual style is crisp and modern, matching the high-trust corporate aesthetic of the dashboard, using a clean color palette of whites and soft blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZWsiDSS2Ry7id1pI0fO15wMoGg3EvNBC_cY6ytcnLOK63UKXoX_RmRcX1m82eIjTs3OsyCPgakYsWP2rgW4h3m-bIbZ_IPpUukcAxIOiPv5UuMA1bRKQbMiykRdfZkYopbh2op0n5Oyqo8JQHOao3JLu_8LY-LIGsNiZgToCBcmMMl4y9cafOFQmTIY-bZGdBZyLwdKKSnh_9hHZxVlFhcpcYQkqdnmye563EkRCEyc-ABrTzNuhPxYi3wdqklIQTetM3zzvHTN79">
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-container-padding-desktop py-12">
+<!-- Hero Section -->
+<section class="text-center mb-16">
+<h1 class="font-display-lg text-display-lg text-primary mb-4 tracking-tight">
+                Welcome to Engage via DM. <br>
+<span class="text-secondary">Let's get your automation running.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                Connect your account to unlock professional-grade social media scaling. Our enterprise-level precision ensures your brand stays consistent 24/7.
+            </p>
+</section>
+<!-- Main Onboarding Card (Bento Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Side: Wizard -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline-md text-headline-md">Setup Progress</h2>
+<span class="text-label-md font-label-md bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full">33% Complete</span>
+</div>
+<div class="space-y-6">
+<!-- Step 1: Completed -->
+<div class="flex items-start gap-4 p-4 rounded-lg bg-surface-container-low border border-primary/20">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary text-[20px]">check</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-primary">Account Created</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your workspace is ready and configured.</p>
+</div>
+</div>
+<!-- Step 2: Active -->
+<div class="flex items-start gap-4 p-4 rounded-lg bg-surface-container-lowest border-2 border-primary ring-4 ring-primary/5">
+<div class="w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center shrink-0">
+<span class="font-label-md text-label-md text-primary">2</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-label-md text-label-md text-on-surface">Connect Instagram</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Securely link your professional account to start managing posts and insights.</p>
+<button class="primary-gradient text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md btn-shadow transition-all duration-200 active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">link</span>
+                                Connect Instagram
+                            </button>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex items-start gap-4 p-4 rounded-lg bg-surface-container-lowest border border-outline-variant opacity-60">
+<div class="w-8 h-8 rounded-full border-2 border-outline flex items-center justify-center shrink-0">
+<span class="font-label-md text-label-md text-outline">3</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">Create your first Automation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Set up your first 'Recipe' to handle comments or schedule posts.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Secondary/Educational Content -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Video Tutorial Card -->
+<div class="bg-inverse-surface text-inverse-on-surface p-6 rounded-xl relative overflow-hidden h-64 flex flex-col justify-end group">
+<img alt="Quick Start Video" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="A high-quality cinematic still showing a sleek laptop on a minimalist desk, displaying a vibrant Instagram dashboard interface with colorful charts and graphs. The lighting is moody and professional, with purple and magenta neon accents reflecting off the glass surface, creating a futuristic yet trustworthy atmosphere for an automation tool tutorial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUobRkyJf7nPPiNbHDVeihJUjPkzR059F5BqcB7HfSIakoZLUJWXQQxqNA7ypi3kYRaMKtsWnel9R7rfURNcrpCORUjid5n3QxM2L92ddWpjo7Xm8nqjC2cR8fWAZowOV8gnZkhUO6lftjj85Cu2YJVGpwnTWlHnyjhj1iN4QGsHDCMEdXnQBwLA4fZx2IE_qhXsWtiT_CjuygcvmVXNdfCZTz0SFl9T5efWjdcVHPPlf4jir-j4ftFFVAQGnVaLgVmWKjg0NdqNro">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-full bg-on-primary-container/20 backdrop-blur-md flex items-center justify-center mb-4 cursor-pointer hover:bg-primary-container/40 transition-colors">
+<span class="material-symbols-outlined text-on-primary-container text-[24px]">play_arrow</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-1">Quick Start Guide</h3>
+<p class="font-body-sm text-body-sm opacity-80">Learn the essentials in under 3 minutes.</p>
+</div>
+</div>
+<!-- Quick Tips Card -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant">
+<h3 class="font-label-md text-label-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+                        Pro Tip
+                    </h3>
+<p class="font-body-md text-body-md text-on-surface-variant italic mb-2">
+                        "Most successful creators start with 'Auto-Reply' to engage with every comment instantly."
+                    </p>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">View popular recipes →</a>
+</div>
+</div>
+</div>
+<!-- Section Gap -->
+<div class="py-12"></div>
+<!-- Bottom Grid: Knowledge Base & Benefits -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Benefit 1 -->
+<div class="flex flex-col items-start gap-4 p-6 border border-outline-variant rounded-xl hover:shadow-md transition-all">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-weight="fill">shield</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Secure &amp; Compliant</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">We use official Instagram Graph APIs to ensure your account remains safe and compliant.</p>
+</div>
+<!-- Benefit 2 -->
+<div class="flex flex-col items-start gap-4 p-6 border border-outline-variant rounded-xl hover:shadow-md transition-all">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-weight="fill">rocket_launch</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Rapid Engagement</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Scale your interaction rates without increasing your manual workload by even a minute.</p>
+</div>
+<!-- Benefit 3 -->
+<div class="flex flex-col items-start gap-4 p-6 border border-outline-variant rounded-xl hover:shadow-md transition-all">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-weight="fill">analytics</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">Advanced Insights</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Get granular data on how your automations are performing and affecting your bottom line.</p>
+</div>
+</div>
+</main>
+<!-- Subtle Background Element -->
+<div class="fixed top-0 right-0 -z-10 w-1/2 h-screen overflow-hidden opacity-20 pointer-events-none">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary rounded-full blur-[100px] floating-anim"></div>
+<div class="absolute top-1/2 -right-12 w-64 h-64 bg-secondary rounded-full blur-[80px] floating-anim" style="animation-delay: 1s"></div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.active\\:scale-95').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.95)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+
+</body></html>
