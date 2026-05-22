@@ -49,15 +49,7 @@ export function DashboardNavbar() {
                             <Bell className="h-5 w-5" />
                         </button>
 
-                        <button
-                            className="
-                  text-muted-foreground
-                  transition-colors
-                  hover:text-primary
-                "
-                        >
-                            <History className="h-5 w-5" />
-                        </button>
+
                     </div>
 
                     <ProfileAvatar />

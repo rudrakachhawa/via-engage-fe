@@ -12,11 +12,11 @@ export default function ProtectedLayout({
 }) {
     const router = useRouter();
 
-    const { id: userId, igUserId } =
+    const { id: userId } =
         useUserState();
 
     const isAuthenticated =
-        Boolean(userId) && Boolean(igUserId);
+        Boolean(userId)
 
     useEffect(() => {
         if (!isAuthenticated) {

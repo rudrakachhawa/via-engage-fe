@@ -1,4 +1,8 @@
+"use client"
+import { useUserState } from "@/store/hooks";
+
 export function ProfileAvatar() {
+    const avatarUrl = useUserState('avatar')
     return (
         <div
             className="
@@ -9,7 +13,7 @@ export function ProfileAvatar() {
         "
         >
             <img
-                src="https://i.pravatar.cc/100?img=12"
+                src={avatarUrl || ""}
                 alt="Profile"
                 className="h-full w-full object-cover"
             />
