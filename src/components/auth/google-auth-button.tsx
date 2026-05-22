@@ -46,7 +46,7 @@ export function GoogleAuthButton({
             const response =
                 await userLoginApi();
 
-            dispatch(setUser(response.user));
+            dispatch(setUser(response));
             // Navigate to the dashboard after successful login
             if (typeof window !== "undefined") {
                 window.location.replace("/dashboard");

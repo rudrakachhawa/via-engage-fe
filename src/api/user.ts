@@ -20,5 +20,5 @@ export async function userLoginApi(): Promise<any> {
         url,
         {}
     );
-    return response.data;
+    return response.data?.user;
 }

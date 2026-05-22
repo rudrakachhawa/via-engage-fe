@@ -1,20 +1,19 @@
 "use client";
-import { useUserState } from "@/store/hooks";
 import { InstagramAuthButton } from "../auth/instagram-auth-button";
 import { OnboardingStep } from "./onboarding-step";
 import { useAutomations } from "@/hooks/automation.hooks";
 import { CreateAutomationButton } from "../automation/create-automation-button";
+import { useUserData } from "@/hooks/user.hooks";
 
 export function SetupProgress() {
-    const igUserId = useUserState("igUserId");
+    const { data: userData } = useUserData();
     const { data: automations } = useAutomations();
 
-    // Completion steps:
-    // 1. Account created: always completed
-    // 2. Connected Instagram: igUserId present
-    // 3. Created first Automation: automations?.length > 0
+    // Step 2: Connected Instagram if userData?.instaAccounts exists and not empty
+    const instaAccounts = userData?.instaAccounts ?? [];
+    const isInstagramConnected = Array.isArray(instaAccounts) && instaAccounts.length > 0;
 
-    const isInstagramConnected = !!igUserId;
+    // Step 3: has at least one automation
     const hasAutomation = !!(automations && automations.length > 0);
 
     // Calculate progress

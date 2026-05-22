@@ -164,7 +164,7 @@ export default function AutomationDetailPage() {
             {actionError && (
                 <div className="mb-4 text-red-500 text-center">{actionError}</div>
             )}
-            <InstagramAccountsDropdown onSelect={(igUserId: string) => {
+            <InstagramAccountsDropdown igUserId={automation?.igUserId} onSelect={(igUserId: string) => {
                 updateAutomationData('igUserId', igUserId)
                 saveMutation.mutate();
             }} />

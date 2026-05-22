@@ -3,8 +3,7 @@
 import { useUserData } from "@/hooks/user.hooks";
 import { ChevronDown, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-
+import { useState, useEffect, useMemo } from "react";
 
 interface InstagramAccount {
     userName: string;
@@ -13,39 +12,39 @@ interface InstagramAccount {
     igUserId: string;
 }
 
-export function InstagramAccountsDropdown({ onSelect }: { onSelect: (igUserId: string) => void }) {
+export function InstagramAccountsDropdown({
+    onSelect,
+    igUserId,
+}: {
+    onSelect: (igUserId: string) => void;
+    igUserId: string;
+}) {
     const router = useRouter();
+    const [open, setOpen] = useState(false);
 
-    const [open, setOpen] =
-        useState(false);
-
+    // Always up to date user accounts
     const instaaccounts =
-        useUserData().data.user
-            .instaAccounts as InstagramAccount[];
+        (useUserData().data?.instaAccounts as InstagramAccount[]) || [];
 
-    const [selectedAccount, setSelectedAccount] =
-        useState<InstagramAccount | null>(
-            instaaccounts?.[0] || null
-        );
+    // Compute the selected account if igUserId is present
+    const selectedAccount = useMemo(() => {
+        if (!igUserId) return null;
+        return instaaccounts.find(acc => acc.igUserId === igUserId) || null;
+    }, [igUserId, instaaccounts]);
 
-    const handleSelect = (
-        account: InstagramAccount
-    ) => {
-        setSelectedAccount(account);
-        onSelect(account?.igUserId)
+    const handleSelect = (account: InstagramAccount) => {
+        onSelect(account?.igUserId);
         setOpen(false);
     };
 
     const handleAddAccount = () => {
-        router.push("/instaaccounts");
+        router.push("/igaccounts");
     };
 
     return (
         <div className="relative">
             <button
-                onClick={() =>
-                    setOpen(!open)
-                }
+                onClick={() => setOpen(!open)}
                 className="
           flex items-center gap-3
           rounded-xl
@@ -60,12 +59,8 @@ export function InstagramAccountsDropdown({ onSelect }: { onSelect: (igUserId: s
                 {selectedAccount ? (
                     <>
                         <img
-                            src={
-                                selectedAccount.avatar
-                            }
-                            alt={
-                                selectedAccount.name
-                            }
+                            src={selectedAccount.avatar}
+                            alt={selectedAccount.name}
                             className="
                 h-8 w-8 rounded-full
                 object-cover
@@ -84,9 +79,7 @@ export function InstagramAccountsDropdown({ onSelect }: { onSelect: (igUserId: s
                   text-foreground
                 "
                             >
-                                {
-                                    selectedAccount.name
-                                }
+                                {selectedAccount.name}
                             </span>
 
                             <span
@@ -95,21 +88,13 @@ export function InstagramAccountsDropdown({ onSelect }: { onSelect: (igUserId: s
                   text-muted-foreground
                 "
                             >
-                                @
-                                {
-                                    selectedAccount.userName
-                                }
+                                @{selectedAccount.userName}
                             </span>
                         </div>
                     </>
                 ) : (
-                    <span
-                        className="
-              text-sm
-              text-muted-foreground
-            "
-                    >
-                        No Instagram Accounts
+                    <span className="text-sm text-muted-foreground">
+                        Select Instagram Account
                     </span>
                 )}
 
@@ -118,10 +103,7 @@ export function InstagramAccountsDropdown({ onSelect }: { onSelect: (igUserId: s
             h-4 w-4
             text-muted-foreground
             transition-transform
-            ${open
-                            ? "rotate-180"
-                            : ""
-                        }
+            ${open ? "rotate-180" : ""}
           `}
                 />
             </button>
@@ -140,18 +122,16 @@ export function InstagramAccountsDropdown({ onSelect }: { onSelect: (igUserId: s
           "
                 >
                     <div className="p-2">
-                        {instaaccounts?.map(
-                            (account) => (
-                                <button
-                                    key={
-                                        account.userName
-                                    }
-                                    onClick={() =>
-                                        handleSelect(
-                                            account
-                                        )
-                                    }
-                                    className="
+                        {instaaccounts.length === 0 && (
+                            <div className="text-sm text-muted-foreground p-2">
+                                No Instagram Accounts
+                            </div>
+                        )}
+                        {instaaccounts?.map(account => (
+                            <button
+                                key={account.userName}
+                                onClick={() => handleSelect(account)}
+                                className={`
                     flex w-full
                     items-center gap-3
                     rounded-xl
@@ -159,58 +139,35 @@ export function InstagramAccountsDropdown({ onSelect }: { onSelect: (igUserId: s
                     text-left
                     transition-colors
                     hover:bg-surface
-                  "
-                                >
-                                    <img
-                                        src={
-                                            account.avatar
-                                        }
-                                        alt={
-                                            account.name
-                                        }
-                                        className="
+                    ${selectedAccount?.igUserId === account.igUserId
+                                        ? "bg-muted/30"
+                                        : ""
+                                    }
+                  `}
+                                disabled={selectedAccount?.igUserId === account.igUserId}
+                            >
+                                <img
+                                    src={account.avatar}
+                                    alt={account.name}
+                                    className="
                       h-10 w-10
                       rounded-full
                       object-cover
                     "
-                                    />
+                                />
+                                <div>
+                                    <p className="text-sm font-semibold">{account.name}</p>
+                                    <p className="text-xs text-muted-foreground">
+                                        @{account.userName}
+                                    </p>
+                                </div>
+                            </button>
+                        ))}
 
-                                    <div>
-                                        <p
-                                            className="
-                        text-sm font-semibold
-                      "
-                                        >
-                                            {account.name}
-                                        </p>
-
-                                        <p
-                                            className="
-                        text-xs
-                        text-muted-foreground
-                      "
-                                        >
-                                            @
-                                            {
-                                                account.userName
-                                            }
-                                        </p>
-                                    </div>
-                                </button>
-                            )
-                        )}
-
-                        <div
-                            className="
-                my-2 h-px
-                bg-border
-              "
-                        />
+                        <div className="my-2 h-px bg-border" />
 
                         <button
-                            onClick={
-                                handleAddAccount
-                            }
+                            onClick={handleAddAccount}
                             className="
                 flex w-full
                 items-center gap-3
