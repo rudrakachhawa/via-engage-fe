@@ -2,10 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import {
-    Loader2,
-    Plus,
-} from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { createAutomationApi } from "@/api/automations.api";
@@ -23,46 +20,33 @@ export function CreateAutomationButton({
         mutate: createAutomation,
         status: createStatus,
     } = useMutation({
-        mutationFn: createAutomationApi,
-
-        onSuccess: (
-            createdAutomation
-        ) => {
-            if (
-                createdAutomation &&
-                createdAutomation.id
-            ) {
-                router.push(
-                    `/automations/${createdAutomation.id}`
-                );
+        mutationFn: () => createAutomationApi({}),
+        onSuccess: (createdAutomation) => {
+            if (createdAutomation && createdAutomation.id) {
+                router.push(`/automations/${createdAutomation.id}`);
             }
         },
     });
 
-    const isLoading =
-        createStatus === "pending";
+    const isLoading = createStatus === "pending";
 
     return (
         <Button
-            onClick={() =>
-                createAutomation()
-            }
+            onClick={() => createAutomation()}
             disabled={isLoading}
             className={className}
         >
             {isLoading ? (
-                <Loader2
-                    className="
-            h-4 w-4 animate-spin
-          "
-                />
+                <>
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    Creating...
+                </>
             ) : (
-                <Plus className="h-4 w-4" />
+                <>
+                    <Plus className="h-4 w-4 mr-2" />
+                    Create Automation
+                </>
             )}
-
-            {isLoading
-                ? "Creating..."
-                : "Create Automation"}
         </Button>
     );
 }

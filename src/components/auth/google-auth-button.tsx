@@ -14,6 +14,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { setUser } from "@/store/slices/userSlice";
 
 import { signInWithPopup } from "firebase/auth";
+import { setItemInStorage } from "@/utils/localStorageUtility";
 
 interface GoogleAuthButtonProps {
     className?: string;
@@ -40,8 +41,10 @@ export function GoogleAuthButton({
             const token =
                 await result.user.getIdToken();
 
+            setItemInStorage('accessToken', token)
+
             const response =
-                await userLoginApi(token);
+                await userLoginApi();
 
             dispatch(setUser(response.user));
             // Navigate to the dashboard after successful login

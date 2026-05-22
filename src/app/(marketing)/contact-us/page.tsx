@@ -36,7 +36,7 @@ export default function ContactUsPage() {
 
     const {
         mutate,
-        isLoading,
+        status,
         isError,
         isSuccess,
         reset,
@@ -62,6 +62,8 @@ export default function ContactUsPage() {
         form.email.trim() !== "" &&
         form.subject.trim() !== "" &&
         form.message.trim() !== "";
+
+    const isLoading = status === "pending";
 
     return (
         <div
@@ -178,7 +180,6 @@ export default function ContactUsPage() {
                                     </p>
                                     <Button
                                         size="sm"
-                                        variant="outline"
                                         onClick={() => {
                                             setForm({
                                                 name: "",

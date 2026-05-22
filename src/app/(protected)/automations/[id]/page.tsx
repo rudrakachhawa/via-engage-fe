@@ -11,6 +11,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import TriggerSection from "@/components/automation/triggerSection";
 import ActionSection from "@/components/automation/actionSection";
+import { InstagramAccountsDropdown } from "@/components/auth/instagram-accounts-dropdown";
 
 export default function AutomationDetailPage() {
     const params = useParams();
@@ -163,7 +164,10 @@ export default function AutomationDetailPage() {
             {actionError && (
                 <div className="mb-4 text-red-500 text-center">{actionError}</div>
             )}
-
+            <InstagramAccountsDropdown onSelect={(igUserId: string) => {
+                updateAutomationData('igUserId', igUserId)
+                saveMutation.mutate();
+            }} />
             {/* Editable Name and Description */}
             <div className="mb-6">
                 <div className="mb-4">

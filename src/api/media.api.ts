@@ -6,10 +6,14 @@ import api from "@/lib/interceptor";
  * @param {("FEED" | "STORY")} [type="FEED"] - The media type to filter by.
  * @returns {Promise<any>} Resolves with the media data from the backend.
  */
-export async function getUserMediaApi(type: "FEED" | "STORY" = "FEED"): Promise<any> {
+export async function getUserMediaApi(
+    type: "FEED" | "STORY" = "FEED",
+    igUserId: string
+): Promise<any> {
     const response = await api.get("/media", {
         params: {
             type,
+            igUserId,
         },
     });
     return response.data?.media;

@@ -24,8 +24,8 @@ export function FeaturesGrid() {
                     title="Secure & Compliant"
                     description="
               We use official Instagram APIs to ensure
-              your account remains safe, compliant,
-              and protected with enterprise-grade security.
+              your account remains safe, compliant and 
+              protected.
             "
                 />
 

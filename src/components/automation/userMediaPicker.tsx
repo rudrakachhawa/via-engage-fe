@@ -1,4 +1,7 @@
+"use client"
+import { useAutomationById } from "@/hooks/automation.hooks";
 import { useUserMedia } from "@/hooks/userMedia.hooks";
+import { useParams } from "next/navigation";
 import React from "react";
 
 type TriggerType = "COMMENT" | "DM" | "LIVE_COMMENT" | "STORY_REPLY" | "MENTION";
@@ -32,7 +35,8 @@ export const MediaPicker = ({
     onChange
 }: MediaPickerProps) => {
     const [showModal, setShowModal] = React.useState(false);
-
+    const params = useParams();
+    const { data } = useAutomationById((params?.id as string))
     if (!triggerType) return null;
 
     let label = "";
@@ -58,7 +62,7 @@ export const MediaPicker = ({
             return null;
     }
 
-    const { data: mediaList, isLoading, error } = useUserMedia(userMediaType ?? "FEED");
+    const { data: mediaList, isLoading, error } = useUserMedia(userMediaType ?? "FEED", data?.igUserId);
 
     // Safety: Accept either straight array or .items key
     const mediaItems: MediaItem[] = Array.isArray(mediaList)
