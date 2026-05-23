@@ -6,22 +6,17 @@ import {
 } from "react";
 
 import { X } from "lucide-react";
+import { useAutomationBuilder } from "@/hooks/use-automation-builder";
 
-interface KeywordsInputProps {
-    value: string[];
 
-    onChange: (
-        value: string[]
-    ) => void;
-
-    placeholder?: string;
-}
-
-export function KeywordsInput({
-    value,
-    onChange,
-    placeholder,
-}: KeywordsInputProps) {
+export function KeywordsInput() {
+    const { state, updateBuilder } = useAutomationBuilder()
+    const value = state.keywords
+    const onChange = (arr: string[]) => {
+        updateBuilder({
+            keywords: arr
+        })
+    }
     const [input, setInput] =
         useState("");
 
@@ -137,9 +132,7 @@ export function KeywordsInput({
                     )
                 }
                 onKeyDown={handleKeyDown}
-                placeholder={
-                    placeholder
-                }
+                placeholder="Type and press enter..."
                 className="
           h-8 flex-1
           border-none

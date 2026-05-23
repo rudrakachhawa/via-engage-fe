@@ -1,5 +1,9 @@
 "use client";
 
+import { deleteAutomationApi, toggleAutomationApi, updateAutomationApi } from "@/api/automations.api";
+import { useAutomationById, useAutomations } from "@/hooks/automation.hooks";
+import { useMutation } from "@tanstack/react-query";
+import { useParams, useRouter } from "next/navigation";
 import {
     createContext,
     useMemo,
@@ -18,6 +22,7 @@ export interface AutomationBuilderState {
     messageTemplate: string | null;
     triggerType: TriggerType;
     keywords: string[];
+    commentReplies: string[];
     targetContentId: string | null;
     targetContentType: string | null;
     targetContentUrl: string | null;
@@ -43,6 +48,7 @@ const defaultState: AutomationBuilderState = {
     messageTemplate: null,
     triggerType: null,
     keywords: [],
+    commentReplies: [],
     targetContentId: null,
     targetContentType: null,
     targetContentUrl: null,
@@ -73,6 +79,12 @@ interface AutomationBuilderContextValue {
     updateBuilder: (
         payload: Partial<AutomationBuilderState>
     ) => void;
+    saveAutomation: () => void;
+    deleteAutomation: () => void;
+    toggleAutomation: () => void;
+    togglePending: boolean
+    savePending: boolean
+    deletePending: boolean
 }
 
 export const AutomationBuilderContext =
@@ -85,7 +97,7 @@ interface ProviderProps {
 
 export function AutomationBuilderProvider({
     children,
-    initialState,
+    initialState
 }: ProviderProps) {
     const [state, dispatch] = useReducer(
         reducer,
@@ -95,6 +107,47 @@ export function AutomationBuilderProvider({
         }
     );
 
+    const params = useParams()
+    const router = useRouter()
+    const { refetch: refetchAllAutomations } = useAutomations()
+    const { refetch: refetchAutomationData } = useAutomationById((params.id as string))
+
+    const toggleMutation = useMutation({
+        mutationFn: () => toggleAutomationApi((params.id as string)),
+        onSuccess: async () => {
+            refetchAutomationData();
+            refetchAllAutomations()
+        },
+        onError: async () => {
+            dispatch({
+                type: "PATCH_STATE",
+                payload: {
+                    isActive: !state.isActive
+                },
+            })
+        }
+    });
+
+    const saveMutation = useMutation({
+        mutationFn: () => updateAutomationApi((params.id as string), value.state),
+        onSuccess: async () => {
+            refetchAutomationData();
+            refetchAllAutomations()
+        }
+    });
+
+    const deleteMutation = useMutation({
+        mutationFn: () => deleteAutomationApi((params.id as string)),
+        onSuccess: () => {
+            refetchAllAutomations()
+            router.push("/automations");
+        }
+    });
+
+    const togglePending = toggleMutation.status === "pending";
+    const savePending = saveMutation.status === "pending";
+    const deletePending = deleteMutation.status === "pending";
+
     const value = useMemo(
         () => ({
             state,
@@ -103,13 +156,21 @@ export function AutomationBuilderProvider({
             ) => dispatch({
                 type: "PATCH_STATE",
                 payload,
-            }),
+            })
         }),
         [state]
     );
-
+    console.log(value.state)
     return (
-        <AutomationBuilderContext.Provider value={value}>
+        <AutomationBuilderContext.Provider value={{
+            ...value,
+            saveAutomation: () => saveMutation.mutate(),
+            deleteAutomation: () => deleteMutation.mutate(),
+            toggleAutomation: () => toggleMutation.mutate(),
+            togglePending,
+            savePending,
+            deletePending,
+        }}>
             {children}
         </AutomationBuilderContext.Provider>
     );

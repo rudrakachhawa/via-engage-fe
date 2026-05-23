@@ -1,3 +1,4 @@
+"use client"
 import { userLoginApi } from '@/api/user';
 import { useQuery } from '@tanstack/react-query';
 

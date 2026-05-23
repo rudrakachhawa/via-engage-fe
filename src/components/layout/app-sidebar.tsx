@@ -6,15 +6,16 @@ import { usePathname } from "next/navigation";
 import {
     BarChart3,
     LayoutDashboard,
-    Plus,
-    Settings,
-    Wand2,
     Mail,
-    User, // use profile icon
+    Settings,
+    User,
+    Wand2,
 } from "lucide-react";
+
+import { useState } from "react";
+
 import { CreateAutomationButton } from "../automation/create-automation-button";
 
-// Ensure unique keys for nav items
 const navItems = [
     {
         label: "Dashboard",
@@ -22,55 +23,71 @@ const navItems = [
         icon: LayoutDashboard,
         key: "dashboard",
     },
+
     {
         label: "Automations",
         href: "/automations",
         icon: Wand2,
         key: "automations",
     },
+
     {
         label: "IG Accounts",
-        href: "/ig-accounts", // Use a unique route for IG Accounts
+        href: "/ig-accounts",
         icon: User,
         key: "ig-accounts",
     },
+
     {
         label: "Analytics",
         href: "/analytics",
         icon: BarChart3,
         key: "analytics",
     },
+
     {
         label: "Contact Us",
         href: "/contact-us",
         icon: Mail,
         key: "contact-us",
     },
+
     {
         label: "Settings",
         href: "/settings",
         icon: Settings,
         key: "settings",
-    }
+    },
 ];
 
 export function AppSidebar() {
     const pathname = usePathname();
 
+    const [expanded, setExpanded] =
+        useState(false);
+
     return (
         <aside
-            className="
+            onMouseEnter={() =>
+                setExpanded(true)
+            }
+            onMouseLeave={() =>
+                setExpanded(false)
+            }
+            className={`
         fixed left-0 top-0 z-50
-        flex h-screen w-20
+        flex h-screen
         flex-col
         border-r border-border
         bg-card/80
         px-4 py-6
         backdrop-blur-xl
         transition-all duration-300
-        hover:w-64
-        group
-      "
+        ${expanded
+                    ? "w-64"
+                    : "w-20"
+                }
+      `}
         >
             <div className="mb-10">
                 <div
@@ -92,17 +109,23 @@ export function AppSidebar() {
                     </div>
 
                     <span
-                        className="
+                        className={`
               whitespace-nowrap
               text-xl font-bold
               text-primary
-              opacity-0
-              transition-opacity
-              duration-200
-              group-hover:opacity-100
-
-              
-            "
+              transition-all duration-200
+              ${expanded
+                                ? `
+                    opacity-100
+                    translate-x-0
+                  `
+                                : `
+                    opacity-0
+                    -translate-x-2
+                    pointer-events-none
+                  `
+                            }
+            `}
                     >
                         Engage via DM
                     </span>
@@ -113,7 +136,6 @@ export function AppSidebar() {
                 {navItems.map((item) => {
                     const Icon = item.icon;
 
-                    // If current pathname is /settings, highlight only the real "Settings" nav item
                     const isActive =
                         pathname === item.href;
 
@@ -147,14 +169,22 @@ export function AppSidebar() {
                             />
 
                             <span
-                                className="
+                                className={`
                   whitespace-nowrap
                   text-sm font-semibold
-                  opacity-0
-                  transition-opacity
-                  duration-200
-                  group-hover:opacity-100
-                "
+                  transition-all duration-200
+                  ${expanded
+                                        ? `
+                        opacity-100
+                        translate-x-0
+                      `
+                                        : `
+                        opacity-0
+                        -translate-x-2
+                        pointer-events-none
+                      `
+                                    }
+                `}
                             >
                                 {item.label}
                             </span>
@@ -163,22 +193,15 @@ export function AppSidebar() {
                 })}
             </nav>
 
-            <div className="mt-auto">
-                <div
+            <div className="mt-auto overflow-hidden">
+                <CreateAutomationButton
                     className="
-            overflow-hidden
+            w-full
+            justify-start
+            gap-4
+            whitespace-nowrap
           "
-                >
-                    <CreateAutomationButton
-                        className="
-              w-full
-              justify-start
-              gap-4
-              overflow-hidden
-              whitespace-nowrap
-            "
-                    />
-                </div>
+                />
             </div>
         </aside>
     );

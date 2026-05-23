@@ -1,20 +1,22 @@
+"use client"
+import { useAutomationBuilder } from "@/hooks/use-automation-builder";
 import { MediaCard } from "./media-card";
 
 interface MediaGridProps {
+    type: "FEED" | "STORY";
+
     media: any[];
-
-    selectedMediaId?: string;
-
-    onSelect?: (
-        media: any
+    onSelect?: (data: any
     ) => void;
 }
 
 export function MediaGrid({
+    type,
     media,
-    selectedMediaId,
-    onSelect,
+    onSelect
 }: MediaGridProps) {
+    const selectedMediaId = useAutomationBuilder().state.targetContentId
+
     return (
         <div
             className="
@@ -28,10 +30,8 @@ export function MediaGrid({
                 <MediaCard
                     key={item.id}
                     media={item}
-                    selected={
-                        selectedMediaId ===
-                        item.id
-                    }
+                    type={type}
+                    selected={item.id == selectedMediaId}
                     onSelect={onSelect}
                 />
             ))}

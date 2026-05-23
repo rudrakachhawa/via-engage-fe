@@ -1,3 +1,4 @@
+"use client"
 import { AutomationRow } from "./automation-row";
 
 interface AutomationListProps {

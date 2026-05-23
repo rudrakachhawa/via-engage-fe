@@ -1,3 +1,4 @@
+"use client"
 interface AutomationStatusBadgeProps {
     isActive: boolean;
 }

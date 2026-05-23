@@ -1,108 +1,183 @@
-import { EditorCard } from "./editor-card";
+"use client";
+
+import { useAutomationBuilder } from "@/hooks/use-automation-builder";
+import { useUserData } from "@/hooks/user.hooks";
+
 
 export function SelectAccountCard() {
+    const { data } =
+        useUserData();
+
+    const instaAccounts =
+        data?.instaAccounts || [];
+
+    const {
+        state,
+        updateBuilder,
+    } = useAutomationBuilder();
+
     return (
-        <EditorCard
-            title="
-        Step 1: Select Instagram Profile
-      "
-            description="
-        Choose which Instagram account
-        should use for this automation.
+        <section
+            className="
+        overflow-hidden
+        rounded-2xl
+        border border-border
+        bg-card
+        shadow-sm
       "
         >
             <div
                 className="
-          grid grid-cols-1
-          gap-4
-          md:grid-cols-2
+          border-b border-border
+          bg-surface/30
+          px-6 py-5
         "
             >
-                {[1, 2].map((item) => (
-                    <button
-                        key={item}
-                        className={`
-              flex items-center
-              justify-between
-              rounded-xl
-              border p-4
-              transition-all
-              ${item === 1
-                                ? `
-                    border-primary
-                    bg-primary/5
-                    ring-1 ring-primary/20
-                  `
-                                : `
-                    border-border
-                    hover:border-primary
-                  `
-                            }
-            `}
-                    >
-                        <div
-                            className="
-                flex items-center gap-3
-              "
-                        >
-                            <div
-                                className="
-                  h-11 w-11
-                  overflow-hidden
-                  rounded-full
-                  border border-border
-                "
-                            >
-                                <img
-                                    src="
-                    https://i.pravatar.cc/100?img=12
-                  "
-                                    alt="Profile"
-                                    className="
-                    h-full w-full
-                    object-cover
-                  "
-                                />
-                            </div>
+                <h2
+                    className="
+            text-2xl font-semibold
+            tracking-tight
+          "
+                >
+                    Step 1: Select Instagram
+                    Profile
+                </h2>
 
-                            <div className="text-left">
-                                <p
-                                    className="
-                    text-sm font-semibold
-                  "
-                                >
-                                    @urban_style_pro
-                                </p>
-
-                                <p
-                                    className="
-                    text-xs
-                    text-muted-foreground
-                  "
-                                >
-                                    Business Profile
-                                </p>
-                            </div>
-                        </div>
-
-                        <div
-                            className={`
-                h-5 w-5 rounded-full
-                border-2
-                ${item === 1
-                                    ? `
-                      border-primary
-                      bg-primary
-                    `
-                                    : `
-                      border-border
-                    `
-                                }
-              `}
-                        />
-                    </button>
-                ))}
+                <p
+                    className="
+            mt-1
+            text-sm
+            text-muted-foreground
+          "
+                >
+                    Choose which Instagram account
+                    should be used for this
+                    automation.
+                </p>
             </div>
-        </EditorCard>
+
+            <div className="p-6">
+                <div
+                    className="
+            grid grid-cols-1
+            gap-4
+            md:grid-cols-2
+          "
+                >
+                    {instaAccounts.map(
+                        (account: any) => {
+                            const isSelected =
+                                state.igUserId ===
+                                account.igUserId;
+                            return (
+                                <button
+                                    key={account.igUserId}
+                                    onClick={() =>
+                                        updateBuilder({
+                                            igUserId:
+                                                account.igUserId,
+
+                                            instaAccount:
+                                                account,
+                                        })
+                                    }
+                                    className={`
+                    flex items-center
+                    justify-between
+                    rounded-xl
+                    border p-4
+                    text-left
+                    transition-all
+                    ${isSelected
+                                            ? `
+                          border-primary
+                          bg-primary/5
+                          ring-1 ring-primary/20
+                        `
+                                            : `
+                          border-border
+                          hover:border-primary
+                        `
+                                        }
+                  `}
+                                >
+                                    <div
+                                        className="
+                      flex items-center
+                      gap-3
+                    "
+                                    >
+                                        <div
+                                            className="
+                        h-11 w-11
+                        overflow-hidden
+                        rounded-full
+                        border border-border
+                        bg-surface
+                      "
+                                        >
+                                            {account.avatar ? (
+                                                <img
+                                                    src={
+                                                        account.avatar
+                                                    }
+                                                    alt={
+                                                        account.name
+                                                    }
+                                                    className="
+                            h-full w-full
+                            object-cover
+                          "
+                                                />
+                                            ) : null}
+                                        </div>
+
+                                        <div>
+                                            <p
+                                                className="
+                          text-sm
+                          font-semibold
+                        "
+                                            >
+                                                @
+                                                {
+                                                    account.userName
+                                                }
+                                            </p>
+
+                                            <p
+                                                className="
+                          text-xs
+                          text-muted-foreground
+                        "
+                                            >
+                                                {account.name}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        className={`
+                      h-5 w-5
+                      rounded-full
+                      border-2
+                      ${isSelected
+                                                ? `
+                            border-primary
+                            bg-primary
+                          `
+                                                : `
+                            border-border
+                          `
+                                            }
+                    `}
+                                    />
+                                </button>
+                            );
+                        }
+                    )}
+                </div>
+            </div>
+        </section>
     );
 }

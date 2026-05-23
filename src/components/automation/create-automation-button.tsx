@@ -6,6 +6,7 @@ import { Loader2, Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { createAutomationApi } from "@/api/automations.api";
+import { useAutomations } from "@/hooks/automation.hooks";
 
 interface CreateAutomationButtonProps {
     className?: string;
@@ -15,7 +16,7 @@ export function CreateAutomationButton({
     className,
 }: CreateAutomationButtonProps) {
     const router = useRouter();
-
+    const { refetch: refetchAllAutomations } = useAutomations()
     const {
         mutate: createAutomation,
         status: createStatus,
@@ -23,6 +24,7 @@ export function CreateAutomationButton({
         mutationFn: () => createAutomationApi({}),
         onSuccess: (createdAutomation) => {
             if (createdAutomation && createdAutomation.id) {
+                refetchAllAutomations()
                 router.push(`/automations/${createdAutomation.id}`);
             }
         },

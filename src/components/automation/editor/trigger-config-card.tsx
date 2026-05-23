@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 import {
     History,
     MessageCircle,
@@ -14,10 +12,7 @@ import { CommentsTriggerConfig } from "./triggers/comments-trigger-config";
 import { DmTriggerConfig } from "./triggers/dm-trigger-config";
 import { StoryTriggerConfig } from "./triggers/story-trigger-config";
 
-type TriggerType =
-    | "COMMENT"
-    | "DM"
-    | "STORY_REPLY";
+import { useAutomationBuilder } from "@/hooks/use-automation-builder";
 
 const triggerTabs = [
     {
@@ -40,10 +35,10 @@ const triggerTabs = [
 ];
 
 export function TriggerConfigCard() {
-    const [triggerType, setTriggerType] =
-        useState<TriggerType>(
-            "COMMENT"
-        );
+    const {
+        state,
+        updateBuilder,
+    } = useAutomationBuilder();
 
     return (
         <EditorCard
@@ -66,16 +61,29 @@ export function TriggerConfigCard() {
                         const Icon = tab.icon;
 
                         const isActive =
-                            triggerType ===
+                            state.triggerType ===
                             tab.type;
 
                         return (
                             <button
                                 key={tab.type}
                                 onClick={() =>
-                                    setTriggerType(
-                                        tab.type
-                                    )
+                                    updateBuilder({
+                                        triggerType:
+                                            tab.type,
+
+                                        targetContentId:
+                                            null,
+
+                                        targetContentType:
+                                            null,
+
+                                        targetContentUrl:
+                                            null,
+
+                                        targetThumbnailUrl:
+                                            null,
+                                    })
                                 }
                                 className={`
                   flex items-center gap-2
@@ -108,16 +116,16 @@ export function TriggerConfigCard() {
                     })}
                 </div>
 
-                {triggerType ===
+                {state.triggerType ===
                     "COMMENT" && (
                         <CommentsTriggerConfig />
                     )}
 
-                {triggerType === "DM" && (
+                {state.triggerType === "DM" && (
                     <DmTriggerConfig />
                 )}
 
-                {triggerType ===
+                {state.triggerType ===
                     "STORY_REPLY" && (
                         <StoryTriggerConfig />
                     )}

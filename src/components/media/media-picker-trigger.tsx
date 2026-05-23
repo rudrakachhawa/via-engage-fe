@@ -1,91 +1,119 @@
+"use client"
+
+import { useAutomationBuilder } from "@/hooks/use-automation-builder";
+import { useUserMedia } from "@/hooks/use-media-picker";
+import { useUserData } from "@/hooks/user.hooks";
+
 interface MediaPickerTriggerProps {
-    media?: any;
-  
-    onClick: () => void;
-  
-    label?: string;
+
+  type: "FEED" | "STORY";
+
+  onClick: () => void;
+
+  label?: string;
+}
+
+export function MediaPickerTrigger({
+  type,
+  onClick,
+  label,
+}: MediaPickerTriggerProps) {
+  const { state } = useAutomationBuilder()
+  const mediaId = {
+    targetContentId: state.targetContentId
   }
-  
-  export function MediaPickerTrigger({
-    media,
-    onClick,
-    label,
-  }: MediaPickerTriggerProps) {
-    return (
-      <button
-        onClick={onClick}
+  const media = useUserMedia(type, state.igUserId || "").data?.find((item: { id: string }) => item.id == mediaId.targetContentId)
+  const hasMedia = !!media;
+
+  return (
+    <button
+      onClick={onClick}
+      className="
+        flex w-full
+        items-center gap-4
+        rounded-xl
+        border border-border
+        bg-card
+        p-3
+        text-left
+        transition-all
+        hover:border-primary
+        hover:ring-4
+        hover:ring-primary/10
+      "
+    >
+      <div
         className="
-          flex w-full
-          items-center gap-4
+          h-16 w-16
+          shrink-0
+          overflow-hidden
           rounded-xl
-          border border-border
-          bg-card
-          p-3
-          text-left
-          transition-all
-          hover:border-primary
-          hover:ring-4
-          hover:ring-primary/10
+          bg-surface
         "
       >
-        <div
-          className="
-            h-14 w-14
-            shrink-0
-            overflow-hidden
-            rounded-lg
-            bg-surface
-          "
-        >
-          {media ? (
-            <img
-              src={
-                media.thumbnailUrl ||
-                media.mediaUrl
-              }
-              alt="Selected media"
-              className="
-                h-full w-full
-                object-cover
-              "
-            />
-          ) : (
-            <div
-              className="
-                flex h-full
-                items-center justify-center
-                text-xs
-                text-muted-foreground
-              "
-            >
-              No Media
-            </div>
-          )}
-        </div>
-  
-        <div className="min-w-0 flex-1">
-          <p
+        {hasMedia ? (
+          <img
+            src={
+              media.thumbnailUrl ||
+              media.mediaUrl
+            }
+            alt="Selected media"
             className="
-              text-sm font-semibold
+              h-full w-full
+              object-cover
             "
-          >
-            {media
-              ? "Selected Media"
-              : label ||
-                "Select Media"}
-          </p>
-  
-          <p
+          />
+        ) : (
+          <div
             className="
-              mt-1 truncate
-              text-xs
+              flex h-full
+              items-center justify-center
+              px-2
+              text-center
+              text-[10px]
+              font-medium
               text-muted-foreground
             "
           >
-            {media?.caption ||
-              "Choose media for this trigger"}
-          </p>
-        </div>
-      </button>
-    );
-  }
+            No{" "}
+            {type === "FEED"
+              ? "Post/Reel"
+              : "Story"}
+          </div>
+        )}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <p
+          className="
+            text-sm font-semibold
+          "
+        >
+          {hasMedia
+            ? "Selected Media"
+            : label ||
+            "Select Media"}
+        </p>
+
+        <p
+          className="
+            mt-1 line-clamp-2
+            text-xs leading-5
+            text-muted-foreground
+          "
+        >
+          {hasMedia
+            ? type === "FEED"
+              ? media.caption &&
+                media.caption.trim()
+                ? media.caption
+                : "No caption"
+              : "Story selected"
+            : type === "FEED"
+              ? "Choose a post or reel for automation"
+              : "Choose a story for automation"}
+        </p>
+      </div>
+    </button>
+  );
+}

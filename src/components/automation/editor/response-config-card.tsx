@@ -4,8 +4,7 @@ import { useAutomationBuilder } from "@/hooks/use-automation-builder";
 
 const variables = [
     "{first_name}",
-    "{username}",
-    "{product_link}",
+    "{username}"
 ];
 
 export function ResponseConfigCard() {

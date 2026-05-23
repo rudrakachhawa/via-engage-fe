@@ -1,41 +1,42 @@
-interface InstagramMedia {
-    id: string;
 
-    mediaUrl: string;
-
-    thumbnailUrl?: string;
-
-    caption?: string;
-
-    createdAt: string;
-}
+import { Check } from "lucide-react";
 
 interface MediaCardProps {
-    media: InstagramMedia;
+    media: any;
+
+    type: "FEED" | "STORY";
 
     selected?: boolean;
 
     onSelect?: (
-        media: InstagramMedia
+        media: any
     ) => void;
 }
 
 export function MediaCard({
     media,
+    type,
     selected,
     onSelect,
 }: MediaCardProps) {
     return (
         <button
             onClick={() =>
-                onSelect?.(media)
+                onSelect?.({
+                    targetContentId: media.id,
+                    targetContentType: media.type,
+                    targetContentUrl: media.permalink,
+                    targetThumbnailUrl: media.thumbnailUrl || media.mediaUrl,
+                })
             }
             className={`
-          group relative
-          overflow-hidden
+          group overflow-hidden
           rounded-2xl
           border-2
+          bg-card
+          text-left
           transition-all
+          relative
           ${selected
                     ? `
                 border-primary
@@ -53,6 +54,7 @@ export function MediaCard({
             aspect-square
             overflow-hidden
             bg-surface
+            relative
           "
             >
                 <img
@@ -69,24 +71,43 @@ export function MediaCard({
               group-hover:scale-105
             "
                 />
+                {selected && (
+                    <span
+                        className="
+                            absolute
+                            top-2
+                            right-2
+                            z-10
+                            flex
+                            items-center
+                            justify-center
+                            h-6 w-6
+                            rounded-full
+                            bg-primary
+                            text-white
+                            shadow-lg
+                        "
+                        aria-label="Selected"
+                    >
+                        <Check size={18} />
+                    </span>
+                )}
             </div>
 
-            {selected && (
-                <div
+            <div className="p-3">
+                <p
                     className="
-              absolute right-3 top-3
-              flex h-7 w-7
-              items-center justify-center
-              rounded-full
-              bg-primary
-              text-sm font-bold
-              text-white
-              shadow-lg
+              line-clamp-2
+              text-xs leading-5
+              text-muted-foreground
             "
                 >
-                    ✓
-                </div>
-            )}
+                    {type === "FEED"
+                        ? media.caption ||
+                        "No caption"
+                        : "Instagram Story"}
+                </p>
+            </div>
         </button>
     );
 }

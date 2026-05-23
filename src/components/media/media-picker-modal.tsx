@@ -2,9 +2,10 @@
 
 import { X } from "lucide-react";
 
+import { useAutomationBuilder } from "@/hooks/use-automation-builder";
+
 import { MediaGrid } from "./media-grid";
 import { useUserMedia } from "@/hooks/use-media-picker";
-
 
 interface MediaPickerModalProps {
     open: boolean;
@@ -13,28 +14,22 @@ interface MediaPickerModalProps {
 
     type: "FEED" | "STORY";
 
-    igUserId: string;
-
-    selectedMediaId?: string;
-
-    onSelect?: (
-        media: any
-    ) => void;
 }
 
 export function MediaPickerModal({
     open,
     onClose,
     type,
-    igUserId,
-    selectedMediaId,
-    onSelect,
 }: MediaPickerModalProps) {
-    const { data, isPending } =
-        useUserMedia(
-            type,
-            igUserId
-        );
+    const { state, updateBuilder } =
+        useAutomationBuilder();
+    const {
+        data,
+        status,
+    } = useUserMedia(
+        type,
+        state.igUserId || ""
+    );
 
     if (!open) return null;
 
@@ -113,7 +108,7 @@ export function MediaPickerModal({
             p-6
           "
                 >
-                    {isPending ? (
+                    {status === "pending" ? (
                         <div
                             className="
                 flex h-full
@@ -123,16 +118,60 @@ export function MediaPickerModal({
                         >
                             Loading...
                         </div>
+                    ) : !data?.length ? (
+                        <div
+                            className="
+                flex h-full
+                flex-col
+                items-center
+                justify-center
+                text-center
+              "
+                        >
+                            <div
+                                className="
+                  rounded-full
+                  bg-surface
+                  px-4 py-2
+                  text-sm
+                  text-muted-foreground
+                "
+                            >
+                                No{" "}
+                                {type === "FEED"
+                                    ? "Posts or Reels"
+                                    : "Stories"}{" "}
+                                Available
+                            </div>
+
+                            <p
+                                className="
+                  mt-4
+                  max-w-md
+                  text-sm leading-6
+                  text-muted-foreground
+                "
+                            >
+                                {type === "FEED"
+                                    ? `
+                    Publish posts or reels from
+                    Instagram to use them in
+                    automations.
+                  `
+                                    : `
+                    Only active stories posted
+                    within the last 24 hours
+                    appear here.
+                  `}
+                            </p>
+                        </div>
                     ) : (
                         <MediaGrid
-                            media={data || []}
-                            selectedMediaId={
-                                selectedMediaId
-                            }
-                            onSelect={(media) => {
-                                onSelect?.(media);
-
+                            type={type}
+                            media={data}
+                            onSelect={(data) => {
                                 onClose();
+                                updateBuilder(data)
                             }}
                         />
                     )}

@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useParams } from "next/navigation";
 
-import { AutomationBuilderProvider } from "@/context/automation-builder-context";
+
+import {
+    AutomationBuilderProvider,
+    AutomationBuilderState,
+} from "@/context/automation-builder-context";
 
 import { AutomationEditorNavbar } from "@/components/automation/automation-editor-navbar";
 
@@ -10,11 +14,9 @@ import { MessagePreviewCard } from "@/components/automation/editor/message-previ
 import { ResponseConfigCard } from "@/components/automation/editor/response-config-card";
 import { SelectAccountCard } from "@/components/automation/editor/select-account-card";
 import { TriggerConfigCard } from "@/components/automation/editor/trigger-config-card";
+import { useAutomationById } from "@/hooks/automation.hooks";
 
 function AutomationEditorContent() {
-    const [isActive, setIsActive] =
-        useState(true);
-
     return (
         <div
             className="
@@ -22,18 +24,7 @@ function AutomationEditorContent() {
         lg:-mx-8
       "
         >
-            <AutomationEditorNavbar
-                isActive={isActive}
-                onToggleActive={
-                    setIsActive
-                }
-                onDelete={() => {
-                    console.log("delete");
-                }}
-                onSave={() => {
-                    console.log("save");
-                }}
-            />
+            <AutomationEditorNavbar />
 
             <div
                 className="
@@ -66,8 +57,91 @@ function AutomationEditorContent() {
 }
 
 export default function AutomationEditorPage() {
+    const params = useParams();
+
+    const automationId =
+        params.id as string;
+
+    const {
+        data,
+        status
+    } = useAutomationById(
+        automationId
+    );
+
+    if (status === "pending") {
+        return (
+            <div
+                className="
+          flex min-h-[70vh]
+          items-center
+          justify-center
+        "
+            >
+                Loading...
+            </div>
+        );
+    }
+
+    const initialState: Partial<AutomationBuilderState> =
+        data
+            ? {
+                id: data.id,
+
+                userId: data.userId,
+
+                igUserId:
+                    data.igUserId,
+
+                name: data.name,
+
+                description:
+                    data.description,
+
+                messageTemplate:
+                    data.messageTemplate,
+
+                triggerType:
+                    data.triggerType,
+
+                keywords:
+                    data.keywords || [],
+
+                targetContentId:
+                    data.targetContentId,
+
+                targetContentType:
+                    data.targetContentType,
+
+                targetContentUrl:
+                    data.targetContentUrl,
+
+                targetThumbnailUrl:
+                    data.targetThumbnailUrl,
+
+                isActive:
+                    data.isActive,
+
+                createdAt:
+                    data.createdAt,
+
+                updatedAt:
+                    data.updatedAt,
+
+                instaAccount:
+                    data.instaAccount ||
+                    null,
+                commentReplies:
+                    data.commentReplies || []
+            }
+            : {};
+
     return (
-        <AutomationBuilderProvider>
+        <AutomationBuilderProvider
+            initialState={
+                initialState
+            }
+        >
             <AutomationEditorContent />
         </AutomationBuilderProvider>
     );
