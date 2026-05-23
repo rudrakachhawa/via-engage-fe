@@ -1,8 +1,10 @@
+"use client"
 import { useQuery } from '@tanstack/react-query'
 import {
     getAutomationsApi,
     getAutomationByIdApi
 } from '@/api/automations.api'
+import { useState } from 'react';
 
 /**
  * Custom hook to fetch all automations using React Query

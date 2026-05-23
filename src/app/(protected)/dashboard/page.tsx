@@ -1,54 +1,49 @@
 import { BenefitsGrid } from "@/components/dashboard/benefits-grid";
 import { DashboardHero } from "@/components/dashboard/dashboard-hero";
-import { DashboardNavbar } from "@/components/dashboard/dashboard-navbar";
-import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { SetupProgress } from "@/components/dashboard/setup-progress";
 import { TipCard } from "@/components/dashboard/tip-card";
 import { TutorialCard } from "@/components/dashboard/tutorial-card";
 
 export default function DashboardPage() {
   return (
-    <DashboardShell>
-      <DashboardNavbar />
 
-      <main
-        className="
+    <main
+      className="
           mx-auto
           max-w-[1440px]
           px-6 py-12
           lg:px-8
         "
-      >
-        <DashboardHero />
+    >
+      <DashboardHero />
 
-        <section
-          className="
+      <section
+        className="
     grid grid-cols-1
     items-stretch
     gap-6
     lg:grid-cols-12
   "
-        >
-          <div className="lg:col-span-7">
-            <SetupProgress />
-          </div>
+      >
+        <div className="lg:col-span-7">
+          <SetupProgress />
+        </div>
 
-          <div
-            className="
+        <div
+          className="
               flex flex-col gap-6
               lg:col-span-5
             "
-          >
-            <TutorialCard />
+        >
+          <TutorialCard />
 
-            <TipCard />
-          </div>
-        </section>
+          <TipCard />
+        </div>
+      </section>
 
-        <div className="py-12" />
+      <div className="py-12" />
 
-        <BenefitsGrid />
-      </main>
-    </DashboardShell>
+      <BenefitsGrid />
+    </main>
   );
 }

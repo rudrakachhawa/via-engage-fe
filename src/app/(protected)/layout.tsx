@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useUserState } from "@/store/hooks";
-
+import { AppShell } from "@/components/layout/app-shell";
 
 export default function ProtectedLayout({
     children,
@@ -11,12 +11,11 @@ export default function ProtectedLayout({
     children: React.ReactNode;
 }) {
     const router = useRouter();
+    const pathname = usePathname();
 
-    const { id: userId } =
-        useUserState();
+    const { id: userId } = useUserState();
 
-    const isAuthenticated =
-        Boolean(userId)
+    const isAuthenticated = Boolean(userId);
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -28,5 +27,10 @@ export default function ProtectedLayout({
         return null;
     }
 
-    return <>{children}</>;
+    // If the current route includes "oauth", do not wrap in AppShell
+    if (pathname && pathname.includes("oauth")) {
+        return <>{children}</>;
+    }
+
+    return <AppShell>{children}</AppShell>;
 }

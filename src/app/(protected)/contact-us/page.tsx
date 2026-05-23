@@ -75,42 +75,6 @@ export default function ContactUsPage() {
         >
             <BackgroundGlow />
 
-            <header
-                className="
-            relative z-10
-            flex justify-center
-            px-6 py-8
-          "
-            >
-                <div
-                    className="
-              flex items-center gap-3
-            "
-                >
-                    <div
-                        className="
-                flex h-9 w-9
-                items-center justify-center
-                rounded-xl
-                bg-[image:var(--gradient-primary)]
-                text-white
-              "
-                    >
-                        <Bolt className="h-5 w-5" />
-                    </div>
-
-                    <span
-                        className="
-                text-2xl font-bold
-                tracking-tight
-                text-primary
-              "
-                    >
-                        Engage via DM
-                    </span>
-                </div>
-            </header>
-
             <main
                 className="
             relative z-10

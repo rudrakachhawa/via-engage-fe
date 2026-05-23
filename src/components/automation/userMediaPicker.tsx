@@ -1,6 +1,6 @@
 "use client"
 import { useAutomationById } from "@/hooks/automation.hooks";
-import { useUserMedia } from "@/hooks/userMedia.hooks";
+import { useUserMedia } from "@/hooks/use-media-picker";
 import { useParams } from "next/navigation";
 import React from "react";
 
