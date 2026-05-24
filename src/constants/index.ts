@@ -1,2 +1,2 @@
 export const INSTAGRAM_AUTH_URL =
-    "https://www.instagram.com/accounts/login/?force_authentication=true&next=%2Foauth%2Fauthorize%2F%3Fclient_id%3D26832069839755194%26redirect_uri%3Dhttps%253A%252F%252Fezzzdm.orgv%252Foauth%26response_type%3Dcode%26scope%3Dinstagram_business_basic%252Cinstagram_business_content_publish%252Cinstagram_business_manage_messages%252Cinstagram_business_manage_comments";
+    "https://www.instagram.com/accounts/login/?force_authentication=true&next=%2Foauth%2Fauthorize%2F%3Fclient_id%3D26832069839755194%26redirect_uri%3Dhttps%253A%252F%252Fezzzdm.org%252Foauth%26response_type%3Dcode%26scope%3Dinstagram_business_basic%252Cinstagram_business_content_publish%252Cinstagram_business_manage_messages%252Cinstagram_business_manage_comments";
