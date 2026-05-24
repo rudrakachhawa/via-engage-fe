@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
                   text-primary
                 "
                         >
-                            Engage via DM
+                            ezzzDM
                         </span>
                     </div>
 
@@ -177,12 +177,12 @@ export default function PrivacyPolicyPage() {
                                             {
                                                 title: "Company",
                                                 description:
-                                                    "Refers to Engage via DM.",
+                                                    "Refers to ezzzDM.",
                                             },
                                             {
                                                 title: "Service",
                                                 description:
-                                                    "Refers to the Website and automation tools provided by Engage via DM.",
+                                                    "Refers to the Website and automation tools provided by ezzzDM.",
                                             },
                                         ].map((item) => (
                                             <div

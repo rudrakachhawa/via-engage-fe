@@ -18,7 +18,7 @@ export function DashboardHero() {
             lg:text-[64px]
           "
             >
-                Welcome to Engage via DM. <br />
+                Welcome to ezzzDM. <br />
 
                 <span className="text-gradient">
                     Let&apos;s get your automation running.

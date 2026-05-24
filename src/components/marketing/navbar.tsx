@@ -48,7 +48,7 @@ export function Navbar() {
               text-primary
             "
                     >
-                        Engage via DM
+                        ezzzDM
                     </Link>
 
                     <nav

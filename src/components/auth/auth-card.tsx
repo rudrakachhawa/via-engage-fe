@@ -37,7 +37,7 @@ export function AuthCard() {
                 >
                     {isLogin
                         ? "Welcome back"
-                        : "Join Engage via DM"}
+                        : "Join ezzzDM"}
                 </h2>
 
                 <p

@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Engage via DM",
+  title: "ezzzDM",
   description: "Instagram automation platform",
 };
 

@@ -26,7 +26,7 @@ export function AppTopbar() {
           text-primary
         "
             >
-                Engage via DM
+                ezzzDM
             </div>
 
             <div

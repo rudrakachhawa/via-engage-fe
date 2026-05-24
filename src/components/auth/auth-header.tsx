@@ -15,7 +15,7 @@ export function AuthHeader() {
             text-primary
           "
             >
-                Engage via DM
+                ezzzDM
             </h1>
 
             <p

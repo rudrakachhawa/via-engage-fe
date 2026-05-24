@@ -579,7 +579,7 @@ export default function ContactUsPage() {
                   font-semibold
                 "
                         >
-                            Engage via DM
+                            ezzzDM
                         </span>
 
                         <span

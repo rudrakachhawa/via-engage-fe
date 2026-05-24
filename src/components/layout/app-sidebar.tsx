@@ -127,7 +127,7 @@ export function AppSidebar() {
                             }
             `}
                     >
-                        Engage via DM
+                        ezzzDM
                     </span>
                 </div>
             </div>
