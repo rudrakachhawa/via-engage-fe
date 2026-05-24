@@ -94,6 +94,7 @@ export function Navbar() {
                 </div>
 
                 <Button onClick={handleNavigation}>
+
                     {!isAuthenticated && <GoogleIcon />}
 
                     {isAuthenticated
