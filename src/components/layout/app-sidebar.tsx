@@ -38,12 +38,12 @@ const navItems = [
         key: "ig-accounts",
     },
 
-    {
-        label: "Analytics",
-        href: "/analytics",
-        icon: BarChart3,
-        key: "analytics",
-    },
+    // {
+    //     label: "Analytics",
+    //     href: "/analytics",
+    //     icon: BarChart3,
+    //     key: "analytics",
+    // },
 
     {
         label: "Contact Us",
@@ -52,12 +52,12 @@ const navItems = [
         key: "contact-us",
     },
 
-    {
-        label: "Settings",
-        href: "/settings",
-        icon: Settings,
-        key: "settings",
-    },
+    // {
+    //     label: "Settings",
+    //     href: "/settings",
+    //     icon: Settings,
+    //     key: "settings",
+    // },
 ];
 
 export function AppSidebar() {

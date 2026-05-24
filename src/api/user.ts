@@ -22,3 +22,13 @@ export async function userLoginApi(): Promise<any> {
     );
     return response.data?.user;
 }
+
+export async function removeIgAccountApi(igUserId: string): Promise<any> {
+    const baseUrl = getServerBaseUrl();
+    const url = `${baseUrl}/user/insta-account/${igUserId}`;
+    const response = await api.delete(
+        url,
+        {}
+    );
+    return response.data;
+}

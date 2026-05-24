@@ -1,15 +1,13 @@
 "use client";
 
+import { InstagramAuthButton } from "@/components/auth/instagram-auth-button";
 import { useAutomationBuilder } from "@/hooks/use-automation-builder";
 import { useUserData } from "@/hooks/user.hooks";
 
-
 export function SelectAccountCard() {
-    const { data } =
-        useUserData();
+    const { data } = useUserData();
 
-    const instaAccounts =
-        data?.instaAccounts || [];
+    const instaAccounts = data?.instaAccounts || [];
 
     const {
         state,
@@ -177,6 +175,8 @@ export function SelectAccountCard() {
                         }
                     )}
                 </div>
+                {/* Render Instagram Auth Button after account cards */}
+                <InstagramAuthButton />
             </div>
         </section>
     );
