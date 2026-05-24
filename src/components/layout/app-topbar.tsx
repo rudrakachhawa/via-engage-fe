@@ -35,7 +35,7 @@ export function AppTopbar() {
           flex items-center gap-4
         "
             >
-                <button
+                {/* <button
                     className="
             relative rounded-xl
             p-2
@@ -55,7 +55,7 @@ export function AppTopbar() {
               bg-secondary
             "
                     />
-                </button>
+                </button> */}
 
                 <ProfileAvatar />
             </div>
