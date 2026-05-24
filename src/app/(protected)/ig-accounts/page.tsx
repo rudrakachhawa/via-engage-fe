@@ -186,7 +186,7 @@ export default function IgAccountsPage() {
                 title="Remove Instagram Profile"
                 description={`Are you sure you want to remove @${selectedAccount?.userName}?
 
-All automations connected to this profile will be paused until you reconnect it.`}
+All automations connected to this profile will be paused and deleted.`}
                 confirmText="Remove Profile"
                 destructive
                 loading={removeLoading}
