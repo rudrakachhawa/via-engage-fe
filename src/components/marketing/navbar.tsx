@@ -10,11 +10,9 @@ import { useUserState } from "@/store/hooks";
 export function Navbar() {
     const router = useRouter();
 
-    const { id: userId } =
-        useUserState();
+    const { id: userId } = useUserState();
 
-    const isAuthenticated =
-        Boolean(userId);
+    const isAuthenticated = Boolean(userId);
 
     const handleNavigation = () => {
         if (isAuthenticated) {
@@ -79,6 +77,18 @@ export function Navbar() {
               "
                         >
                             Pricing
+                        </Link>
+
+                        <Link
+                            href="/privacy-policy"
+                            className="
+                text-sm font-medium
+                text-muted-foreground
+                transition-colors
+                hover:text-foreground
+              "
+                        >
+                            Privacy Policy
                         </Link>
                     </nav>
                 </div>
