@@ -1,7 +1,6 @@
 "use client";
 import {
     ArrowRight,
-    Bolt,
     Mail,
     Send,
     ShieldCheck,
@@ -563,16 +562,15 @@ export default function ContactUsPage() {
                 >
                     <div
                         className="
-                flex items-center gap-3
+                flex items-center gap-2
               "
                     >
-                        <div
-                            className="
-                  h-6 w-6 rounded-md
-                  bg-[image:var(--gradient-primary)]
-                "
+                        <img
+                            src="/appIcon.png"
+                            alt="Logo"
+                            width={55}
+                            height={60}
                         />
-
                         <span
                             className="
                   font-semibold
