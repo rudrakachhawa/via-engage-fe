@@ -400,7 +400,7 @@ export default function PrivacyPolicyPage() {
                                     </p>
 
                                     <a
-                                        href="mailto:support@engageviadm.com"
+                                        href="mailto:support@ezzzdm.org"
                                         className="
                         mt-1 block
                         font-semibold
@@ -408,7 +408,7 @@ export default function PrivacyPolicyPage() {
                         hover:underline
                       "
                                     >
-                                        support@engageviadm.com
+                                        support@ezzzdm.org
                                     </a>
                                 </div>
                             </div>

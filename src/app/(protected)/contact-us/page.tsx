@@ -118,8 +118,7 @@ export default function ContactUsPage() {
                     text-muted-foreground
                   "
                             >
-                                Have a question about Engage via
-                                DM? Our automation experts are
+                                Have a question about ezzzDM? Our automation experts are
                                 here to help.
                             </p>
                         </div>
@@ -387,7 +386,7 @@ export default function ContactUsPage() {
 
                             <div className="space-y-4">
                                 <a
-                                    href="mailto:support@engageviadm.com"
+                                    href="mailto:support@ezzzdm.org"
                                     className="
                       flex items-center gap-3
                       rounded-xl
@@ -408,7 +407,7 @@ export default function ContactUsPage() {
                         font-medium
                       "
                                     >
-                                        support@engageviadm.com
+                                        support@ezzzdm.org
                                     </span>
                                 </a>
 
