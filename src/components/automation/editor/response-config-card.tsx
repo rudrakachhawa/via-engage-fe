@@ -2,10 +2,10 @@
 
 import { useAutomationBuilder } from "@/hooks/use-automation-builder";
 
-const variables = [
-    // "{first_name}",
-    // "{username}"
-];
+// const variables = [
+//     "{first_name}",
+//     "{username}"
+// ];
 
 export function ResponseConfigCard() {
     const {
@@ -13,13 +13,13 @@ export function ResponseConfigCard() {
         updateBuilder,
     } = useAutomationBuilder();
 
-    const insertVariable = (
-        variable: string
-    ) => {
-        updateBuilder({
-            messageTemplate: `${state.messageTemplate} ${variable}`,
-        });
-    };
+    // const insertVariable = (
+    //     variable: string
+    // ) => {
+    //     updateBuilder({
+    //         messageTemplate: `${state.messageTemplate} ${variable}`,
+    //     });
+    // };
 
     return (
         <section
@@ -90,7 +90,7 @@ export function ResponseConfigCard() {
           "
                 />
 
-                <div
+                {/* <div
                     className="
             mt-5
             flex flex-wrap gap-2
@@ -117,7 +117,7 @@ export function ResponseConfigCard() {
                             {item}
                         </button>
                     ))}
-                </div>
+                </div> */}
             </div>
         </section>
     );

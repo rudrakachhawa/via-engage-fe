@@ -96,7 +96,16 @@ export function SetupProgress() {
                     {isInstagramConnected && !hasAutomation && (
                         <CreateAutomationButton />
                     )}
+                    {isInstagramConnected && hasAutomation && (
+                        <button
+                            className="mt-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 transition-colors"
+                            onClick={() => window.location.href = "/automations"}
+                        >
+                            See all Automations
+                        </button>
+                    )}
                 </OnboardingStep>
+
             </div>
         </div>
     );

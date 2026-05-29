@@ -87,12 +87,6 @@ export function HeroSection() {
                             : "Continue with Google"}
                     </Button>
 
-                    <Button
-                        size="lg"
-                        variant="secondary"
-                    >
-                        Watch Demo
-                    </Button>
                 </div>
             </div>
         </section>

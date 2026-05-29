@@ -15,7 +15,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { setUser } from "@/store/slices/userSlice";
 import { useUserData } from "@/hooks/user.hooks";
 
-export function InstagramAuthButton() {
+export function InstagramAuthButton({ buttonText = 'Connect Instagram' }: { buttonText?: string }) {
     const router = useRouter();
 
     const dispatch = useAppDispatch();
@@ -124,7 +124,7 @@ export function InstagramAuthButton() {
 
             {loading
                 ? "Connecting..."
-                : "Connect Instagram"}
+                : buttonText}
         </Button>
     );
 }

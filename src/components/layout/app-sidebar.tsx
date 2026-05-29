@@ -10,6 +10,7 @@ import {
     Settings,
     User,
     Wand2,
+    BookOpen,
 } from "lucide-react";
 
 import { useState } from "react";
@@ -37,7 +38,12 @@ const navItems = [
         icon: User,
         key: "ig-accounts",
     },
-
+    {
+        label: "Guides",
+        href: "/guides",
+        icon: BookOpen,
+        key: "guides",
+    },
     // {
     //     label: "Analytics",
     //     href: "/analytics",
@@ -92,24 +98,23 @@ export function AppSidebar() {
             <div className="mb-10">
                 <div
                     className="
-            flex items-center gap-4
+            flex items-center gap-2
           "
                 >
                     <div
                         className="
-              flex h-10 w-10
+              flex
               shrink-0
               items-center justify-center
-              rounded-xl
-              bg-[image:var(--gradient-primary)]
-              text-white
             "
                     >
-                        <Wand2 className="h-5 w-5" />
+
                     </div>
 
                     <span
                         className={`
+                            gap-2
+              flex items-center 
               whitespace-nowrap
               text-xl font-bold
               text-primary
@@ -127,8 +132,15 @@ export function AppSidebar() {
                             }
             `}
                     >
+                        <img
+                            src="/appIcon.png"
+                            alt="Logo"
+                            width={60}
+                            height={60}
+                        />
                         ezzzDM
                     </span>
+
                 </div>
             </div>
 
@@ -194,14 +206,44 @@ export function AppSidebar() {
             </nav>
 
             <div className="mt-auto overflow-hidden">
-                <CreateAutomationButton
-                    className="
-            w-full
-            justify-start
-            gap-4
-            whitespace-nowrap
-          "
-                />
+                {expanded ? (
+                    <CreateAutomationButton
+                        className="
+                    w-full
+                    justify-start
+                    gap-4
+                    whitespace-nowrap
+                  "
+                    />
+                ) : (
+                    <button
+                        type="button"
+                        className="
+                        flex items-center justify-center
+                        w-full py-3
+                        rounded-xl
+                        text-primary hover:bg-surface
+                        transition-colors
+                        "
+                        title="Create Automation"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M12 4v16m8-8H4"
+                            />
+                        </svg>
+                    </button>
+                )}
+
             </div>
         </aside>
     );

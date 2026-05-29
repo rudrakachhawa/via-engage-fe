@@ -34,25 +34,21 @@ export default function PrivacyPolicyPage() {
                 flex items-center justify-center gap-3
               "
                     >
-                        <div
-                            className="
-                  flex h-10 w-10
-                  items-center justify-center
-                  rounded-xl
-                  bg-[image:var(--gradient-primary)]
-                  text-white
-                "
-                        >
-                            <Bolt className="h-5 w-5" />
-                        </div>
 
                         <span
                             className="
+                            flex items-center
                   text-2xl font-bold
                   tracking-tight
                   text-primary
                 "
                         >
+                            <img
+                                src="/appIcon.png"
+                                alt="Logo"
+                                width={60}
+                                height={60}
+                            />
                             ezzzDM
                         </span>
                     </div>

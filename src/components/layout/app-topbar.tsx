@@ -20,12 +20,21 @@ export function AppTopbar() {
         >
             <div
                 className="
+                flex items-center 
+                gap-2
           text-[28px]
           font-bold
           tracking-[-0.03em]
           text-primary
         "
             >
+                <img
+                    src="/appIcon.png"
+
+                    alt="Logo"
+                    width={60}
+                    height={60}
+                />
                 ezzzDM
             </div>
 

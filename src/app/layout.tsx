@@ -12,6 +12,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "ezzzDM",
   description: "Instagram automation platform",
+  icons: {
+    icon: [
+      {
+        url: "/appIcon.png",
+        href: "/appIcon.png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

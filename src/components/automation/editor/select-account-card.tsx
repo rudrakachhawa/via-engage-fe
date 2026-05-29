@@ -175,9 +175,12 @@ export function SelectAccountCard() {
                         }
                     )}
                 </div>
-                {/* Render Instagram Auth Button after account cards */}
-                <InstagramAuthButton />
+                {/* Add spacing before Instagram Auth Button */}
+                <div className="mt-6">
+                    <InstagramAuthButton buttonText='Connect a new Instagram Account' />
+                </div>
             </div>
+
         </section>
     );
 }

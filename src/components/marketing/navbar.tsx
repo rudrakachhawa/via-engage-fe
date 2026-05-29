@@ -42,10 +42,17 @@ export function Navbar() {
                     <Link
                         href="/"
                         className="
+                        flex items-center
               text-xl font-bold tracking-tight
               text-primary
             "
                     >
+                        <img
+                            src="/appIcon.png"
+                            alt="Logo"
+                            width={60}
+                            height={60}
+                        />
                         ezzzDM
                     </Link>
 

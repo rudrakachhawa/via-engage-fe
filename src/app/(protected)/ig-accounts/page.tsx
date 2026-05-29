@@ -159,7 +159,7 @@ export default function IgAccountsPage() {
                 <div
                     className="
       flex items-center
-      justify-between
+      justify-center
       rounded-2xl
       border border-dashed
       border-border
@@ -167,18 +167,7 @@ export default function IgAccountsPage() {
       px-5 py-4
     "
                 >
-                    <div>
-                        <p
-                            className="
-          text-sm
-          font-semibold
-        "
-                        >
-                            Connect a new Instagram Account
-                        </p>
-                    </div>
-
-                    <InstagramAuthButton />
+                    <InstagramAuthButton buttonText="Connect a new Instagram Account" />
                 </div>
             </div>
             <AlertModal
@@ -195,6 +184,6 @@ All automations connected to this profile will be paused and deleted.`}
                 }
                 onConfirm={handleRemoveAccount}
             />
-        </div>
+        </div >
     );
 }

@@ -1,6 +1,14 @@
+"use client"
 import { Play } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function TutorialCard() {
+    const router = useRouter();
+
+    const handleClick = () => {
+        router.push("/guides");
+    };
+
     return (
         <div
             className="
@@ -38,6 +46,7 @@ export function TutorialCard() {
 
             <div className="relative z-10">
                 <button
+                    onClick={handleClick}
                     className="
             mb-4
             flex h-12 w-12
