@@ -132,7 +132,7 @@ export function AutomationEditorNavbar() {
                             "
                             style={{ marginRight: 12 }}
                         >
-                            Live
+                            Status
                         </span>
                         {/* Use shadcn/ui tailwind Switch for toggle */}
                         <Switch
@@ -147,22 +147,6 @@ export function AutomationEditorNavbar() {
                         >
                             {/* Hide the default label, use custom one below */}
                         </Switch>
-                        <span
-                            className={`
-                                ml-2 text-xs font-bold
-                                ${isActive ? "text-primary" : "text-muted-foreground"}
-                                select-none
-                            `}
-                        >
-                            {togglePending
-                                ? isActive
-                                    ? "Off..."
-                                    : "On..."
-                                : isActive
-                                    ? "On"
-                                    : "Off"
-                            }
-                        </span>
                     </div>
 
                     <Button
