@@ -11,7 +11,7 @@ export function CommentsTriggerConfig() {
         Type and press enter...
       "
                 helperText="
-        Leave empty to trigger on all comments.
+        Keywords are required to trigger automation.
       "
             />
             <CommentRepliesEditor />

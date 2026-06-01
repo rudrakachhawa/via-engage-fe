@@ -24,7 +24,7 @@ text-sm font-medium
     text-muted-foreground
   "
             >
-                Leave empty to trigger on all comments.
+                Keywords are required to trigger automation.
             </p>
         </div>
     );

@@ -8,7 +8,7 @@ export function StoryTriggerConfig() {
             placeholder="
         wow, fire, link...
       "
-            helperText="Keywords are required to trigger automation on story reply."
+            helperText="Keywords are required to trigger automation."
         />
     );
 }
