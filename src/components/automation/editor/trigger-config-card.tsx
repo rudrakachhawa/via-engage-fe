@@ -83,6 +83,7 @@ export function TriggerConfigCard() {
 
                                         targetThumbnailUrl:
                                             null,
+                                        keywords: []
                                     })
                                 }
                                 className={`
