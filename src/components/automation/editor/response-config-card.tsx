@@ -67,7 +67,7 @@ export function ResponseConfigCard() {
                   font-semibold
                 "
                         >
-                            Conversation Starter
+                            Welcome Message
                         </h3>
 
                         <p
@@ -77,7 +77,7 @@ export function ResponseConfigCard() {
                   text-muted-foreground
                 "
                         >
-                            Show users a message and button before the automation continues.
+                            Display a welcome message and button before continuing.
                         </p>
 
                         <div className="mt-5 space-y-4">
@@ -206,7 +206,7 @@ export function ResponseConfigCard() {
               font-semibold
             "
                                     >
-                                        Convert To Follower
+                                        Follow Before Continue
                                     </h3>
 
                                     <p

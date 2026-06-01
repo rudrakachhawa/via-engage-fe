@@ -8,7 +8,7 @@ export function DmTriggerConfig() {
         <div className="space-y-2">
             <label
                 className="
-  text-sm
+text-sm font-medium
   text-muted-foreground
 "
             >
