@@ -4,11 +4,13 @@ import { AutomationRow } from "./automation-row";
 interface AutomationListProps {
     automations: any[];
     isFilterApplied: Boolean;
+    status: any;
 }
 
 export function AutomationList({
     automations,
-    isFilterApplied
+    isFilterApplied,
+    status
 }: AutomationListProps) {
     const showNoResults =
         Boolean(isFilterApplied) && Array.isArray(automations) && automations.length === 0;
@@ -56,7 +58,16 @@ export function AutomationList({
                     </thead>
 
                     <tbody>
-                        {showNoResults ? (
+                        {status === "pending" ? (
+                            <tr>
+                                <td
+                                    colSpan={5}
+                                    className="px-6 py-8 text-center text-base font-medium text-muted-foreground"
+                                >
+                                    Loading...
+                                </td>
+                            </tr>
+                        ) : showNoResults ? (
                             <tr>
                                 <td
                                     colSpan={5}

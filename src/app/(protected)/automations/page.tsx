@@ -118,6 +118,7 @@ export default function AutomationsPage() {
             <AutomationList
                 automations={filteredAutomations}
                 isFilterApplied={isFilterApplied}
+                status={status}
             />
         </div>
     );
