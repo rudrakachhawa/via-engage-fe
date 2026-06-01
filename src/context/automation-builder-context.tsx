@@ -31,6 +31,17 @@ export interface AutomationBuilderState {
     createdAt: string | null;
     updatedAt: string | null;
     instaAccount?: any | null;
+    conversationStarter: {
+        message: string;
+        buttonText: string;
+    } | null;
+    convertToFollower: boolean;
+    convertToFollowerMessage: {
+        message: string;
+        buttons: {
+            text: string;
+        }[];
+    } | null;
 }
 
 type Action = {
@@ -48,7 +59,13 @@ const defaultState: AutomationBuilderState = {
     messageTemplate: null,
     triggerType: null,
     keywords: [],
-    commentReplies: [],
+    commentReplies: [
+        "Done! Check your inbox 📬",
+        "Just sent it 😊 Check your messages!",
+        "Your link is on the way 🚀 Check your DMs",
+        "Sent successfully ✨ Go check your inbox!",
+        "All set 🙌 Check your messages 📩"
+    ],
     targetContentId: null,
     targetContentType: null,
     targetContentUrl: null,
@@ -57,6 +74,29 @@ const defaultState: AutomationBuilderState = {
     createdAt: null,
     updatedAt: null,
     instaAccount: null,
+    conversationStarter: {
+        message: `Hey there! 👋
+
+So glad you're here — thanks so much for your interest 😊
+
+Just click below, and I’ll send you the link in a moment!
+`,
+        buttonText: "Sure, send it!"
+    },
+    convertToFollower: false,
+    convertToFollowerMessage: {
+        message: `Oh no! Looks like you're not following me yet 👀
+
+It would mean a lot if you could visit my profile and hit that follow button 😁
+
+Once you're done, click the "I'm Following" button below and I'll send it right away ✨
+`
+        , buttons: [{
+            text: "Visit Profile",
+        }, {
+            text: "I'm Following",
+        }]
+    },
 };
 
 function reducer(
