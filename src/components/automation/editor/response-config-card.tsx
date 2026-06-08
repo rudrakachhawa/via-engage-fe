@@ -1,6 +1,22 @@
 "use client";
 
 import { useAutomationBuilder } from "@/hooks/use-automation-builder";
+import type React from "react";
+
+type Button = {
+    type: string;
+    title: string;
+    url: string;
+    // Optionally add 'text' to avoid ts error in preview:
+    text?: string;
+};
+
+type Payload = {
+    template_type: string;
+    text: string;
+    buttons: Button[];
+};
+
 
 export function ResponseConfigCard() {
     const {
@@ -101,7 +117,7 @@ export function ResponseConfigCard() {
                                             .conversationStarter
                                             ?.message || ""
                                     }
-                                    onChange={(e) =>
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                                         updateBuilder({
                                             conversationStarter: {
                                                 ...state.conversationStarter,
@@ -147,7 +163,7 @@ export function ResponseConfigCard() {
                                             .conversationStarter
                                             ?.buttonText || ""
                                     }
-                                    onChange={(e) =>
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                                         updateBuilder({
                                             conversationStarter: {
                                                 message: state.conversationStarter?.message ?? "",
@@ -243,6 +259,7 @@ export function ResponseConfigCard() {
                                             : "bg-border"
                                         }
         `}
+                                    type="button"
                                 >
                                     <div
                                         className={`
@@ -283,7 +300,7 @@ export function ResponseConfigCard() {
                                                 ?.message ||
                                             ""
                                         }
-                                        onChange={(e) =>
+                                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                                             updateBuilder({
                                                 convertToFollowerMessage: {
                                                     ...state.convertToFollowerMessage,
@@ -346,52 +363,583 @@ export function ResponseConfigCard() {
                             )}
                         </div>
                     )}
-                {/* DM Response */}
+                {/* Response Flow */}
 
                 <div>
 
-                    <h3
-                        className="
-              mb-3
-              text-lg
-              font-semibold
-            "
-                    >
-                        Automation Reply
-                    </h3>
 
-                    <textarea
-                        value={
-                            state.messageTemplate || ""
-                        }
-                        onChange={(e) =>
-                            updateBuilder({
-                                messageTemplate:
-                                    e.target.value,
-                            })
-                        }
-                        placeholder="
-              Write your automation response...
+
+                    {/* Add Message */}
+
+                    {(!state.responseFlow ||
+                        state.responseFlow.length === 0) && (
+
+                            <div className="relative">
+
+                                <details
+                                    className="
+            overflow-hidden
+            rounded-2xl
+            border border-dashed
+            border-border
+            bg-background
+          "
+                                >
+
+                                    <summary
+                                        className="
+              cursor-pointer
+              list-none
+              px-6 py-5
+              font-medium
             "
-                        className="
-              min-h-[260px]
-              w-full
-              resize-none
+                                    >
+
+                                        + Add Message
+
+                                    </summary>
+
+                                    <div className="border-t border-border p-4 space-y-3">
+
+                                        {/* TEXT */}
+
+                                        <button
+
+                                            onClick={() => {
+
+                                                updateBuilder({
+
+                                                    responseFlow: [
+
+                                                        {
+
+                                                            type: "TEXT",
+
+                                                            attachment: {
+
+                                                                type: "template",
+
+                                                                payload: {
+
+                                                                    template_type: "button",
+
+                                                                    text: "",
+
+                                                                    buttons: []
+
+                                                                }
+
+                                                            }
+
+                                                        }
+
+                                                    ]
+
+                                                });
+
+                                            }}
+
+                                            className="
+                flex
+                w-full
+                flex-col
+                rounded-xl
+                border border-border
+                bg-card
+                p-4
+                text-left
+                transition-colors
+                hover:bg-surface
+              "
+                                            type="button"
+                                        >
+
+                                            <span className="font-medium">
+
+                                                Text Message
+
+                                            </span>
+
+                                            <span
+                                                className="
+                  text-sm
+                  text-muted-foreground
+                "
+                                            >
+
+                                                Send text with optional buttons
+
+                                            </span>
+
+                                        </button>
+
+                                        {/* IMAGE */}
+
+                                        <button
+                                            disabled
+                                            className="
+                flex
+                w-full
+                flex-col
+                rounded-xl
+                border border-border
+                bg-card
+                p-4
+                text-left
+                opacity-50
+              "
+                                            type="button"
+                                        >
+
+                                            <span className="font-medium">
+
+                                                Image Message
+
+                                            </span>
+
+                                            <span
+                                                className="
+                  text-sm
+                  text-muted-foreground
+                "
+                                            >
+
+                                                Coming Soon
+
+                                            </span>
+
+                                        </button>
+
+                                        {/* CARD */}
+
+                                        <button
+                                            disabled
+                                            className="
+                flex
+                w-full
+                flex-col
+                rounded-xl
+                border border-border
+                bg-card
+                p-4
+                text-left
+                opacity-50
+              "
+                                            type="button"
+                                        >
+
+                                            <span className="font-medium">
+
+                                                Card Message
+
+                                            </span>
+
+                                            <span
+                                                className="
+                  text-sm
+                  text-muted-foreground
+                "
+                                            >
+
+                                                Coming Soon
+
+                                            </span>
+
+                                        </button>
+
+                                    </div>
+
+                                </details>
+
+                            </div>
+
+                        )}
+
+                    {/* Message Block */}
+
+                    {
+
+                        state.responseFlow?.map(
+                            (
+                                message,
+                                index
+                            ) => {
+
+                                // Adapt payload.buttons to fit the Button[] type with non-optional url
+                                const rawPayload = message.attachment?.payload as
+                                    | {
+                                        template_type: string;
+                                        text: string;
+                                        buttons?: {
+                                            type: "web_url" | "postback";
+                                            url?: string;
+                                            payload?: string;
+                                            title: string;
+                                        }[];
+                                    }
+                                    | undefined;
+
+                                const payload: Payload | undefined = rawPayload
+                                    ? {
+                                        template_type: rawPayload.template_type,
+                                        text: rawPayload.text,
+                                        buttons: (rawPayload.buttons || []).map((b) => ({
+                                            type: b.type,
+                                            title: b.title,
+                                            url: b.url ?? "", // enforce url to be string
+                                        })),
+                                    }
+                                    : undefined;
+
+
+
+                                const buttons: Button[] =
+                                    payload
+                                        ?.buttons || [];
+
+                                return (
+
+                                    <div
+                                        key={index}
+                                        className="
               rounded-2xl
               border border-border
               bg-background
               p-6
-              text-base
-              leading-7
-              outline-none
-              focus:border-primary
-              focus:ring-4
-              focus:ring-primary/10
+              space-y-6
             "
-                    />
+                                    >
+
+                                        <div>
+
+                                            <h3
+                                                className="
+                     text-lg
+              font-semibold
+                "
+                                            >
+
+                                                Text Message
+
+                                            </h3>
+
+                                            <p
+                                                className="
+                  text-sm
+                  text-muted-foreground
+                "
+                                            >
+
+                                                Send text with optional buttons
+
+                                            </p>
+
+                                        </div>
+
+                                        {/* Message */}
+
+                                        <textarea
+
+                                            value={
+                                                payload?.text ||
+                                                ""
+                                            }
+
+                                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+
+                                                const flow = [
+                                                    ...(state.responseFlow || [])
+                                                ];
+
+                                                flow[index] = {
+                                                    ...message,
+                                                    attachment: {
+                                                        // Ensure type is always present and is a string
+                                                        type: message.attachment?.type ?? "",
+                                                        payload: {
+                                                            ...payload,
+                                                            text: e.target.value,
+                                                            // Ensure template_type is always a string
+                                                            template_type: payload?.template_type ?? "",
+                                                            // Ensure buttons is always an array
+                                                            buttons: (payload?.buttons ?? []).filter(
+                                                                (btn: any) =>
+                                                                    (btn.type === "web_url" || btn.type === "postback")
+                                                            ).map((btn: any) => ({
+                                                                type: btn.type as "web_url" | "postback",
+                                                                title: btn.title,
+                                                                url: btn.url,
+                                                                payload: btn.payload
+                                                            })) as {
+                                                                type: "web_url" | "postback";
+                                                                url?: string;
+                                                                payload?: string;
+                                                                title: string;
+                                                            }[]
+                                                        }
+                                                    }
+                                                };
+
+
+
+                                                updateBuilder({
+                                                    responseFlow: flow
+                                                });
+
+                                            }}
+
+                                            className="
+                min-h-[220px]
+                w-full
+                rounded-2xl
+                border border-border
+                bg-card
+                p-5
+              "
+                                        />
+
+                                        {/* Buttons */}
+
+                                        <div className="space-y-4">
+
+                                            <div
+                                                className="
+                  flex items-center
+                  justify-between
+                "
+                                            >
+
+                                                <p className="font-medium">
+
+                                                    Buttons
+
+                                                </p>
+
+                                                <button
+
+                                                    disabled={
+                                                        buttons.length >= 3
+                                                    }
+
+                                                    onClick={() => {
+
+                                                        const flow = [
+                                                            ...(state.responseFlow || [])
+                                                        ];
+
+                                                        // Defensive: make sure the array exists
+                                                        if (
+                                                            flow[index] &&
+                                                            flow[index].attachment &&
+                                                            flow[index].attachment.payload &&
+                                                            Array.isArray(flow[index].attachment.payload.buttons)
+                                                        ) {
+                                                            flow[index]
+                                                                .attachment
+                                                                .payload
+                                                                .buttons
+                                                                .push({
+
+                                                                    type: "web_url",
+
+                                                                    title: "",
+
+                                                                    url: ""
+
+                                                                });
+                                                        }
+
+                                                        updateBuilder({
+                                                            responseFlow: flow
+                                                        });
+
+                                                    }}
+
+                                                    className="
+                    text-sm
+                    text-primary
+                    disabled:opacity-40
+                  "
+                                                    type="button"
+                                                >
+
+                                                    + Add Button
+
+                                                </button>
+
+                                            </div>
+
+                                            {
+
+                                                buttons.map(
+                                                    (
+                                                        button,
+                                                        buttonIndex
+                                                    ) => (
+
+                                                        <div
+                                                            key={
+                                                                buttonIndex
+                                                            }
+                                                            className="
+                        grid
+                        gap-3
+                        md:grid-cols-[1fr_1fr_auto]
+                      "
+                                                        >
+
+                                                            <input
+
+                                                                value={
+                                                                    button.title
+                                                                }
+
+                                                                placeholder="
+Button Title
+"
+
+                                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+
+                                                                    const flow = [
+                                                                        ...(state.responseFlow || [])
+                                                                    ];
+
+                                                                    if (
+                                                                        flow[index] &&
+                                                                        flow[index].attachment &&
+                                                                        flow[index].attachment.payload &&
+                                                                        Array.isArray(flow[index].attachment.payload.buttons)
+                                                                    ) {
+                                                                        flow[index]
+                                                                            .attachment
+                                                                            .payload
+                                                                            .buttons[
+                                                                            buttonIndex
+                                                                        ]
+                                                                            .title =
+                                                                            e.target.value;
+                                                                    }
+
+                                                                    updateBuilder({
+                                                                        responseFlow: flow
+                                                                    });
+
+                                                                }}
+
+                                                                className="
+                          h-12
+                          rounded-xl
+                          border border-border
+                          px-4
+                        "
+                                                            />
+
+                                                            <input
+
+                                                                value={
+                                                                    button.url ||
+                                                                    ""
+                                                                }
+
+                                                                placeholder="
+https://...
+"
+
+                                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+
+                                                                    const flow = [
+                                                                        ...(state.responseFlow || [])
+                                                                    ];
+
+                                                                    if (
+                                                                        flow[index] &&
+                                                                        flow[index].attachment &&
+                                                                        flow[index].attachment.payload &&
+                                                                        Array.isArray(flow[index].attachment.payload.buttons)
+                                                                    ) {
+                                                                        flow[index]
+                                                                            .attachment
+                                                                            .payload
+                                                                            .buttons[
+                                                                            buttonIndex
+                                                                        ]
+                                                                            .url =
+                                                                            e.target.value;
+                                                                    }
+
+                                                                    updateBuilder({
+                                                                        responseFlow: flow
+                                                                    });
+
+                                                                }}
+
+                                                                className="
+                          h-12
+                          rounded-xl
+                          border border-border
+                          px-4
+                        "
+                                                            />
+
+                                                            <button
+
+                                                                onClick={() => {
+
+                                                                    const flow = [
+                                                                        ...(state.responseFlow || [])
+                                                                    ];
+
+                                                                    if (
+                                                                        flow[index] &&
+                                                                        flow[index].attachment &&
+                                                                        flow[index].attachment.payload &&
+                                                                        Array.isArray(flow[index].attachment.payload.buttons)
+                                                                    ) {
+                                                                        flow[index]
+                                                                            .attachment
+                                                                            .payload
+                                                                            .buttons
+                                                                            .splice(
+                                                                                buttonIndex,
+                                                                                1
+                                                                            );
+                                                                    }
+
+                                                                    updateBuilder({
+                                                                        responseFlow: flow
+                                                                    });
+
+                                                                }}
+
+                                                                className="
+                          text-red-500
+                        "
+                                                                type="button"
+                                                            >
+
+                                                                Remove
+
+                                                            </button>
+
+                                                        </div>
+
+                                                    )
+                                                )
+
+                                            }
+
+                                        </div>
+
+                                    </div>
+
+                                )
+
+                            }
+                        )
+
+                    }
 
                 </div>
-
             </div>
         </section>
     );

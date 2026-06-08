@@ -79,71 +79,72 @@ export default function AutomationEditorPage() {
 
   const initialState: Partial<AutomationBuilderState> = data
     ? {
-        id: data.id,
+      id: data.id,
 
-        userId: data.userId,
+      userId: data.userId,
 
-        igUserId: data.igUserId,
+      igUserId: data.igUserId,
 
-        name: data.name,
+      name: data.name,
 
-        description: data.description,
+      description: data.description,
 
-        messageTemplate: data.messageTemplate,
+      messageTemplate: data.messageTemplate,
 
-        triggerType: data.triggerType,
+      triggerType: data.triggerType,
 
-        keywords: data.keywords || [],
+      keywords: data.keywords || [],
 
-        targetContentId: data.targetContentId,
+      targetContentId: data.targetContentId,
 
-        targetContentType: data.targetContentType,
+      targetContentType: data.targetContentType,
 
-        targetContentUrl: data.targetContentUrl,
+      targetContentUrl: data.targetContentUrl,
 
-        targetThumbnailUrl: data.targetThumbnailUrl,
+      targetThumbnailUrl: data.targetThumbnailUrl,
 
-        isActive: data.isActive,
+      isActive: data.isActive,
 
-        createdAt: data.createdAt,
+      createdAt: data.createdAt,
 
-        updatedAt: data.updatedAt,
+      updatedAt: data.updatedAt,
 
-        instaAccount: data.instaAccount || null,
-        commentReplies: data.commentReplies || [
-          "Done! Check your inbox 📬",
-          "Just sent it 😊 Check your messages!",
-          "Your link is on the way 🚀 Check your DMs",
-          "Sent successfully ✨ Go check your inbox!",
-          "All set 🙌 Check your messages 📩",
-        ],
-        conversationStarter: data.conversationStarter || {
-          message: `Hey there! 👋
+      instaAccount: data.instaAccount || null,
+      commentReplies: data.commentReplies || [
+        "Done! Check your inbox 📬",
+        "Just sent it 😊 Check your messages!",
+        "Your link is on the way 🚀 Check your DMs",
+        "Sent successfully ✨ Go check your inbox!",
+        "All set 🙌 Check your messages 📩",
+      ],
+      conversationStarter: data.conversationStarter || {
+        message: `Hey there! 👋
 
 So glad you're here — thanks so much for your interest 😊
 
 Just click below, and I’ll send you the link in a moment!
 `,
-          buttonText: "Sure, send it!",
-        },
-        convertToFollower: data.convertToFollower || false,
-        convertToFollowerMessage: data.convertToFollowerMessage || {
-          message: `Oh no! Looks like you're not following me yet 👀
+        buttonText: "Sure, send it!",
+      },
+      convertToFollower: data.convertToFollower || false,
+      convertToFollowerMessage: data.convertToFollowerMessage || {
+        message: `Oh no! Looks like you're not following me yet 👀
 
 It would mean a lot if you could visit my profile and hit that follow button 😁
 
 Once you're done, click the "I'm Following" button below and I'll send it right away ✨
 `,
-          buttons: [
-            {
-              text: "Visit Profile",
-            },
-            {
-              text: "I'm Following",
-            },
-          ],
-        },
-      }
+        buttons: [
+          {
+            text: "Visit Profile",
+          },
+          {
+            text: "I'm Following",
+          },
+        ],
+      },
+      responseFlow: data.responseFlow || []
+    }
     : {};
 
   return (

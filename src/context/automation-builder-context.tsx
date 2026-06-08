@@ -42,6 +42,35 @@ export interface AutomationBuilderState {
             text: string;
         }[];
     } | null;
+    responseFlow: {
+        type: "TEXT" | "IMAGE" | "CARD";
+
+        attachment?: {
+
+            type: string;
+
+            payload: {
+
+                template_type: string;
+
+                text: string;
+
+                buttons: {
+                    type: "web_url" | "postback";
+
+                    url?: string;
+
+                    payload?: string;
+
+                    title: string;
+
+                }[]
+
+            }
+
+        }
+
+    }[]
 }
 
 type Action = {
@@ -97,6 +126,25 @@ Once you're done, click the "I'm Following" button below and I'll send it right 
             text: "I'm Following",
         }]
     },
+    responseFlow: [
+        {
+            type: "TEXT",
+
+            attachment: {
+                type: "template",
+
+                payload: {
+                    template_type: "button",
+
+                    text: "",
+
+                    buttons: []
+                }
+
+            }
+
+        }
+    ]
 };
 
 function reducer(
